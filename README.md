@@ -1,6 +1,6 @@
 [<img src="https://www.ensicaen.fr/wp-content/uploads/2017/02/LogoEnsicaen.gif" width="256" >](https://www.ensicaen.fr)
 
-Projet de régate
+Projet de régate : Elgama
 ================
 
 ## Description du projet
@@ -24,18 +24,18 @@ Le projet a la structure suivante :
     └── src
         ├── main
         │   ├── java
-        │   │      ├── fr.ensicaen.genielogiciel.mvp/*.java
-        │   │      ├── fr.ensicaen.genielogiciel.mvp.model/*.java
-        │   │      ├── fr.ensicaen.genielogiciel.mvp.presenter/*.java
-        │   │      └── fr.ensicaen.genielogiciel.mvp.view/*.java
+        │   │      ├── fr.ensicaen.Elgama/*.java
+        │   │      ├── fr.ensicaen.Elgama.model/*.java
+        │   │      ├── fr.ensicaen.Elgama.presenter/*.java
+        │   │      └── fr.ensicaen.Elgama.view/*.java
         │   │
         │   └── resources
-        │          ├── fr.ensicaen.genielogiciel.mvp/view/*.fxml
-        │          ├── fr.ensicaen.genielogiciel.mvp/view/*.css
-        │          └── fr.ensicaen.genielogiciel.mvp/MessageBundle.properties.properties
+        │          ├── fr.ensicaen.Elgama/view/*.fxml
+        │          ├── fr.ensicaen.Elgama/view/*.css
+        │          └── fr.ensicaen.Elgama/MessageBundle.properties.properties
         ├── test
             ├── java
-            │      └── fr.ensicaen.genielogiciel.mvp/*.java
+            │      └── fr.ensicaen.Elgama/*.java
             └── resources
 
 # À vous de jouer !
