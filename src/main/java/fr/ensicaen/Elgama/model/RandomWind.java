@@ -29,4 +29,5 @@ public class RandomWind implements Wind {
             return 0;
         }
     }
+
 }

@@ -30,4 +30,5 @@ public class RandomWindTest {
         assertTrue(integerXExists);
         assertTrue(integerYExists);
     }
+
 }
