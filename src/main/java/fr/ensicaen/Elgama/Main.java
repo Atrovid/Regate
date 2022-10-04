@@ -1,7 +1,7 @@
 package fr.ensicaen.Elgama;
 
-import fr.ensicaen.Elgama.presenter.LoginPresenter;
-import fr.ensicaen.Elgama.view.LoginView;
+import fr.ensicaen.Elgama.presenter.StartPresenter;
+import fr.ensicaen.Elgama.view.StartView;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
@@ -20,10 +20,10 @@ public final class Main extends Application {
     @Override
     public void start( final Stage primaryStage ) throws Exception {
         primaryStage.setTitle(getMessageBundle().getString("project.title"));
-        LoginView view = LoginView.LoginViewFactory.createView(primaryStage);
-        LoginPresenter presenter = new LoginPresenter();
-        presenter.setLoginView(view);
-        view.setLoginPresenter(presenter);
+        StartView view = StartView.StartViewFactory.createView(primaryStage);
+        StartPresenter presenter = new StartPresenter();
+        presenter.setStartView(view);
+        view.setStartPresenter(presenter);
         view.show();
 
 
