@@ -1,6 +1,7 @@
 package fr.ensicaen.Elgama.view;
 
 import fr.ensicaen.Elgama.presenter.ILoginView;
+import fr.ensicaen.Elgama.presenter.IStartView;
 import fr.ensicaen.Elgama.presenter.LoginPresenter;
 import fr.ensicaen.Elgama.Main;
 import javafx.fxml.FXML;
@@ -49,13 +50,16 @@ public class LoginView implements ILoginView {
             // Factory class as Utility class where the constructor is private
         }
 
-        public static LoginView createView( Stage primaryStage ) throws IOException {
+        public static LoginView createView() throws IOException {
             FXMLLoader loader = new FXMLLoader(LoginView.class.getResource("LoginDialog.fxml"), Main.getMessageBundle());
             Parent root = loader.load();
             LoginView view = loader.getController();
             Scene scene = new Scene(root);
-            view._stage = primaryStage;
-            primaryStage.setScene(scene);
+            view._stage = new Stage();
+
+
+            view._stage.setTitle(Main.getMessageBundle().getString("project.title"));
+            view._stage.setScene(scene);
             return view;
         }
     }
