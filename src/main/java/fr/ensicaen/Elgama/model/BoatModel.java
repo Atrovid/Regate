@@ -1,5 +1,8 @@
 package fr.ensicaen.Elgama.model;
 
+import java.awt.geom.Point2D;
+
+
 public class BoatModel {
     private double _x = 580;
     private double _y = 480;
@@ -15,7 +18,7 @@ public class BoatModel {
         return _y;
     }
 
-    public void rotate( int angle ) {
+    public void rotate(int angle) {
         _anglePositive = (360 + _anglePositive + angle) % 360;
     }
 
@@ -31,10 +34,31 @@ public class BoatModel {
         return _dy;
     }
 
-    public void move( ) {
+    public void move() {
         _dx = Math.sin(_anglePositive * Math.PI / 180);
+
         _dy = -Math.cos(_anglePositive * Math.PI / 180);
+
         _x += _dx;
         _y += _dy;
     }
+
+    public double scalar(Point2D vector) {
+        return vector.getX() * _dx + vector.getY() * _dy;
+    }
+
+    public double vectorialBetweenVectors(Point2D vector) {
+        return Math.sqrt(vector.getX() * vector.getX() + vector.getY() + vector.getY()) * Math.sqrt(_dx * _dx + _dy + _dy);
+    }
+
+
+
+
 }
+
+
+/* Creer une méthode qui prend un argument à partir d'une classe vent :point2D, angle du bateau et modifier la vitesse
+    du bateau selon le vent
+
+    PolReader
+ */
