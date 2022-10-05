@@ -1,5 +1,7 @@
 package fr.ensicaen.Elgama.model;
 
+import com.sun.javafx.geom.Point2D;
+
 public class BoatModel {
     private double _x = 580;
     private double _y = 480;
@@ -37,4 +39,21 @@ public class BoatModel {
         _x += _dx;
         _y += _dy;
     }
+
+    private double scalar(Point2D vector )
+    {
+        return vector.x * _dx + vector.y * _dy;
+    }
+
+    private double vectorialBetweenVectors( Point2D vector )
+    {
+        return Math.sqrt( vector.x * vector.x + vector.y + vector.y ) * Math.sqrt( _dx * _dx + _dy + _dy );
+    }
+
+    public double angleCalculus( Wind wind)
+    {
+        Point2D boat = new Point2D( (float) _dx, (float) _dy );
+        return Math.acos( this.scalar(wind.getPoint2() ) /  this.vectorialBetweenVectors( wind.getPoint2() ) );
+    }
+
 }
