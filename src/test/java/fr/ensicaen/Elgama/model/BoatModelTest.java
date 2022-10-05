@@ -30,7 +30,7 @@ public final class BoatModelTest {
 
         boat.rotate(90);
         boat.move();
-        assertEquals(190,Math.round(boat.scalar(boat_point)));
+        assertEquals(190, boat.scalar(boat_point),0.0001);
     }
 
 

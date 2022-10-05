@@ -52,6 +52,12 @@ public class BoatModel {
     }
 
 
+    public double angleCalculus(Map map)
+    {
+        Point2D boat = new Point2D.Double(_dx, _dy);
+        return Math.acos( this.scalar(map.getWindDirection()) /  this.vectorialBetweenVectors( map.getWindDirection()) );
+     }
+
 
 
 }
