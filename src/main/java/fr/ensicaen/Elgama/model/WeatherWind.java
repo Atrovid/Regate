@@ -11,7 +11,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
 
-public class WeatherWind implements Wind {
+public class WeatherWind implements IWind {
     final private Point2D _GPSCoords;
     final private float _speed;
     final private Point2D _direction;
