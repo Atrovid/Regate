@@ -23,7 +23,6 @@ public class BoatModel {
     }
 
     public double getAngle() {
-        System.out.println(_anglePositive);
         return _anglePositive;
     }
 
