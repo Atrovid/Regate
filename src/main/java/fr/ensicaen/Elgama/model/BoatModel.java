@@ -1,6 +1,7 @@
 package fr.ensicaen.Elgama.model;
 
-import com.sun.javafx.geom.Point2D;
+import java.awt.geom.Point2D;
+
 
 public class BoatModel {
     private double _x = 580;
@@ -35,17 +36,19 @@ public class BoatModel {
 
     public void move() {
         _dx = Math.sin(_anglePositive * Math.PI / 180);
+
         _dy = -Math.cos(_anglePositive * Math.PI / 180);
+
         _x += _dx;
         _y += _dy;
     }
 
     public double scalar(Point2D vector) {
-        return vector.x * _dx + vector.y * _dy;
+        return vector.getX() * _dx + vector.getY() * _dy;
     }
 
     public double vectorialBetweenVectors(Point2D vector) {
-        return Math.sqrt(vector.x * vector.x + vector.y + vector.y) * Math.sqrt(_dx * _dx + _dy + _dy);
+        return Math.sqrt(vector.getX() * vector.getX() + vector.getY() + vector.getY()) * Math.sqrt(_dx * _dx + _dy + _dy);
     }
 
 
