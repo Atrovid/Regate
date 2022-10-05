@@ -8,7 +8,7 @@
 <?import javafx.scene.text.Text?>
 
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="537.0" prefWidth="702.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="537.0" prefWidth="702.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.ensicaen.Elgama.view.ConfigView">
    <children>
       <ImageView fitHeight="98.0" fitWidth="102.0" layoutX="20.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fitHeight="98.0" fitWidth="102.0" layoutX="20.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true" />
@@ -48,6 +48,6 @@
             </Pane>
          </children>
       </AnchorPane>
-      <Button fx:id="play" layoutX="267.0" layoutY="468.0" maxHeight="55.0" maxWidth="168.0" minHeight="55.0" minWidth="168.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="168.0" text="%config.play" />
+      <Button fx:id="play" onAction="#onClickOnStartGame" layoutX="267.0" layoutY="468.0" maxHeight="55.0" maxWidth="168.0" minHeight="55.0" minWidth="168.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="168.0" text="%config.play" />
    </children>
 </AnchorPane>
