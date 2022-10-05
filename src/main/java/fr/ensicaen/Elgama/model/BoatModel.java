@@ -50,7 +50,7 @@ public class BoatModel {
         return Math.sqrt( vector.x * vector.x + vector.y + vector.y ) * Math.sqrt( _dx * _dx + _dy + _dy );
     }
 
-    public double angleCalculus(Wind wind)
+    public double angleCalculusBetweenWindAndBoat(Wind wind)
     {
         Point2D boat = new Point2D( (float) _dx, (float) _dy );
         return Math.acos( this.scalar(wind.getPoint2() ) /  this.vectorialBetweenVectors( wind.getPoint2() ) );
