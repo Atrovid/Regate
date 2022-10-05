@@ -60,6 +60,7 @@ public class LoginView implements ILoginView {
 
             view._stage.setTitle(Main.getMessageBundle().getString("project.title"));
             view._stage.setScene(scene);
+            view._stage.setResizable(false);
             return view;
         }
     }

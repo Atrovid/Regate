@@ -51,6 +51,7 @@ public class StartView implements IStartView {
             Scene scene = new Scene(root);
             view._stage = primaryStage;
             primaryStage.setScene(scene);
+            primaryStage.setResizable(false);
             return view;
         }
     }
