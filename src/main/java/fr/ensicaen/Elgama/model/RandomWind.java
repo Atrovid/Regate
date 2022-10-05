@@ -3,24 +3,35 @@ package fr.ensicaen.Elgama.model;
 
 import java.awt.geom.Point2D;
 
-public class RandomWind implements Wind {
+public class RandomWind implements IWind {
+
+    float _force;
+
+    Point2D _dir;
+
+    public RandomWind() {
+        this._force = (float) (16.0 * Math.random());
+        this._dir = createWindDirection();
+    }
+
     @Override
     public float getWindForce() {
-        float _force;
-        _force = (float) (16.0 * Math.random());
         return _force;
     }
-
     @Override
     public Point2D getWindDirection() {
-        double _x = Math.random();
-        double _y = Math.random();
-
-        return new Point2D.Double(RandomToDirection(_x),
-                RandomToDirection(_y));
+        return _dir;
     }
 
-    private double RandomToDirection(double rd) {
+    public Point2D createWindDirection() {
+        double _x = Math.random();
+        double _y = Math.random();
+        Point2D WindDir = new Point2D.Double(randomToDirection(_x),
+                randomToDirection(_y));
+        return normalize(WindDir);
+    }
+
+    private double randomToDirection(double rd) {
         if(rd<0.33) {
             return -1;
         }else if(rd>0.67) {
@@ -28,6 +39,13 @@ public class RandomWind implements Wind {
         }else{
             return 0;
         }
+    }
+    private Point2D normalize(Point2D p){
+        double x = p.getX();
+        double y = p.getY();
+        double norm = p.distance(0,0);
+        return new Point2D.Double(x / norm, y / norm);
+
     }
 
 }
