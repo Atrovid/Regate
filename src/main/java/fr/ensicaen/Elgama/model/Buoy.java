@@ -2,7 +2,7 @@ package fr.ensicaen.Elgama.model;
 
 import java.awt.geom.Point2D;
 
-public class Buoy implements MapElement{
+public class Buoy implements IMapElement {
     private final Point2D pos;
     private final int radius;
 
