@@ -1,15 +1,18 @@
 package fr.ensicaen.Elgama.presenter;
 
-import fr.ensicaen.Elgama.model.BoatModel;
+import fr.ensicaen.Elgama.model.*;
 
 // Remarque : l'animation n'est pas considérée comme étant du graphisme à proprement parlé.
 //            On peut la considérer comme une bibliothèque tiers de gestion de threading.
 //            On peut donc l'utiliser dans le presenter.
-import fr.ensicaen.Elgama.model.PlayerModel;
+import fr.ensicaen.Elgama.view.MapElementView;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.util.Duration;
+
+import java.awt.geom.Point2D;
+import java.util.ArrayList;
 
 public class GamePresenter {
     private final PlayerModel _playerModel;
@@ -27,7 +30,10 @@ public class GamePresenter {
     public void setGameView( IGameView gameView ) {
         _gameView = gameView;
         _gameView.addBoat(_boatModel.getX(), _boatModel.getY());
-        _gameView.addBuoy(10,10);
+
+        Buoy[] buoyList = {new Buoy(new Point2D.Double(500,100), 20)};
+        CheckPoint[] cpList = {};
+        _gameView.drawWaterBody(new WaterBody(new RandomWind(), new Shoreline(100, 'w'), buoyList, cpList ));
     }
 
     public void handleUserAction( UserAction code ) {

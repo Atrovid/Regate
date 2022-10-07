@@ -1,5 +1,6 @@
 package fr.ensicaen.Elgama.view;
 
+import fr.ensicaen.Elgama.model.WaterBody;
 import fr.ensicaen.Elgama.presenter.GamePresenter;
 import fr.ensicaen.Elgama.presenter.IGameView;
 import fr.ensicaen.Elgama.presenter.UserAction;
@@ -21,7 +22,6 @@ public class GameView implements IGameView {
     private static Stage _stage;
     private GamePresenter _gamePresenter;
     private Ellipse _boat;
-    private Ellipse _buoy;
     @FXML
     private AnchorPane _base;
 
@@ -40,11 +40,9 @@ public class GameView implements IGameView {
         return boat;
     }
 
-    public Ellipse drawBuoy( double x, double y, double r) {
-        Ellipse buoy = new Ellipse(x, y, r, r);
-        buoy.setFill(Color.ORANGE);
-        _base.getChildren().add(buoy);
-        return buoy;
+    public void drawWaterBody(WaterBody map) {
+        MapElementView visitor = new MapElementView(_base);
+        map.accept(visitor, null);
     }
 
     public void move( Ellipse boat, double dx, double dy ) {
@@ -63,10 +61,6 @@ public class GameView implements IGameView {
 
     public void addBoat( double x, double y ) {
         _boat = drawBoat(x, y, 6, 16);
-    }
-
-    public void addBuoy( double x, double y ) {
-        _buoy = drawBuoy(x, y, 6);
     }
 
     private void handleKeyPressed( KeyCode code ) {
