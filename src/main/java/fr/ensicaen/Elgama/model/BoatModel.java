@@ -51,10 +51,12 @@ public class BoatModel {
         return Math.sqrt(vector.getX() * vector.getX() + vector.getY() * vector.getY()) * Math.sqrt(_dx * _dx + _dy * _dy);
     }
 
+
     public double angleBetweenWindAndBoat( Point2D wind )
     {
-        return Math.acos( scalarProduct( wind ) / productBetweenNorm( wind ) );
+        return Math.PI * Math.acos( scalarProduct( wind ) / productBetweenNorm( wind ) ) / 180;
     }
+
 
     public double getBoatSpeed( PolReader speedTable, IWind wind )
     {
