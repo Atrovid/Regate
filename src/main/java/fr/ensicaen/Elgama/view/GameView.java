@@ -21,6 +21,7 @@ public class GameView implements IGameView {
     private static Stage _stage;
     private GamePresenter _gamePresenter;
     private Ellipse _boat;
+    private Ellipse _buoy;
     @FXML
     private AnchorPane _base;
 
@@ -39,6 +40,13 @@ public class GameView implements IGameView {
         return boat;
     }
 
+    public Ellipse drawBuoy( double x, double y, double r) {
+        Ellipse buoy = new Ellipse(x, y, r, r);
+        buoy.setFill(Color.ORANGE);
+        _base.getChildren().add(buoy);
+        return buoy;
+    }
+
     public void move( Ellipse boat, double dx, double dy ) {
         boat.setLayoutX(boat.getLayoutX() + dx);
         boat.setLayoutY(boat.getLayoutY() + dy);
@@ -55,6 +63,10 @@ public class GameView implements IGameView {
 
     public void addBoat( double x, double y ) {
         _boat = drawBoat(x, y, 6, 16);
+    }
+
+    public void addBuoy( double x, double y ) {
+        _buoy = drawBuoy(x, y, 6);
     }
 
     private void handleKeyPressed( KeyCode code ) {
