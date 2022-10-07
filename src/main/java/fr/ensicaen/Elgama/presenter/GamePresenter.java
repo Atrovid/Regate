@@ -34,6 +34,7 @@ public class GamePresenter {
         _gameView = gameView;
         _gameView.addBoat(_boatModel.getX(), _boatModel.getY());
         _gameView.addBuoy(10,10);
+        _gameView.setWind(_windDir);
     }
 
     public void handleUserAction( UserAction code ) {
