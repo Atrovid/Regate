@@ -53,6 +53,6 @@ public class BoatModel {
 
     public double angleBetweenWindAndBoat( Point2D wind )
     {
-        return Math.acos( this.scalarProduct( wind ) / this.productBetweenNorm( wind ) );
+        return Math.acos( scalarProduct( wind ) / productBetweenNorm( wind ) );
     }
 }
