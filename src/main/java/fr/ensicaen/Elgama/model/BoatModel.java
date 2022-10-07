@@ -55,4 +55,10 @@ public class BoatModel {
     {
         return Math.acos( scalarProduct( wind ) / productBetweenNorm( wind ) );
     }
+
+    public double getBoatSpeed( PolReader speedTable, IWind wind )
+    {
+        double data[][] = speedTable.loadData();
+        double strength = wind.getWindForce();
+    }
 }
