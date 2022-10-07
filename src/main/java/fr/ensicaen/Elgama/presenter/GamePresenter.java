@@ -27,6 +27,7 @@ public class GamePresenter {
     public void setGameView( IGameView gameView ) {
         _gameView = gameView;
         _gameView.addBoat(_boatModel.getX(), _boatModel.getY());
+        _gameView.addBuoy(10,10);
     }
 
     public void handleUserAction( UserAction code ) {

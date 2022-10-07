@@ -18,6 +18,8 @@ public class Map {
         return _wind.getWindDirection();
     }
 
+    public float getWindForce() { return _wind.getWindForce(); }
+
     public Shoreline getShore() {
         return _shore;
     }

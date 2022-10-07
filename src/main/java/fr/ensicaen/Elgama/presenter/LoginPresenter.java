@@ -1,6 +1,7 @@
 package fr.ensicaen.Elgama.presenter;
 
 import fr.ensicaen.Elgama.Main;
+import fr.ensicaen.Elgama.view.ConfigView;
 import fr.ensicaen.Elgama.view.GameView;
 import fr.ensicaen.Elgama.view.LoginView;
 
@@ -18,10 +19,10 @@ public final class LoginPresenter {
             _loginView.displayError(Main.getMessageBundle().getString("error.nickname"));
         } else {
             try {
-                GameView view = GameView.GameViewFactory.createView();
-                GamePresenter gamePresenter = new GamePresenter(nickName);
-                view.setGamePresenter(gamePresenter);
-                gamePresenter.setGameView(view);
+                ConfigView view = ConfigView.ConfigViewFactory.createView();
+                ConfigPresenter configPresenter = new ConfigPresenter(nickName);
+                view.setConfigPresenter(configPresenter);
+                configPresenter.setConfigView(view);
                 view.show();
             } catch (IOException e) {
                 e.printStackTrace();
