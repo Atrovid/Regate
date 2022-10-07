@@ -5,6 +5,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 
+import java.lang.NumberFormatException;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
@@ -16,13 +17,22 @@ public class WeatherWind implements IWind {
     final private float _speed;
     final private Point2D _direction;
 
-    public WeatherWind(Point2D GPSCoordinates) throws IOException {
+    public WeatherWind(Point2D GPSCoordinates) throws WeatherWindRequestFailureException {
         _GPSCoords = GPSCoordinates;
-        String data = fetchWeatherData();
+        String data;
+        try {
+            data = fetchWeatherData();
+        } catch (IOException e) {
+            throw new WeatherWindRequestFailureException(e.getMessage());
+        }
         String SPEED_FIELD_NAME = "\"wnd_spd\":";
         String DIRECTION_FIELD_NAME = "\"wnd_dir\":";
         String speedString = extractFieldValue(data, SPEED_FIELD_NAME);
-        _speed = Float.parseFloat(speedString);
+        try {
+            _speed = Float.parseFloat(speedString);
+        } catch (NumberFormatException e) {
+            throw new WeatherWindRequestFailureException(e.getMessage());
+        }
         String directionString = extractFieldValue(data, DIRECTION_FIELD_NAME);
         _direction = interpretDirection(directionString);
     }

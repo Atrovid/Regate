@@ -5,9 +5,9 @@ import java.awt.geom.Point2D;
 
 public class RandomWind implements IWind {
 
-    float _force;
+    final float _force;
 
-    Point2D _dir;
+    final Point2D _dir;
 
     public RandomWind() {
         this._force = (float) (16.0 * Math.random());
