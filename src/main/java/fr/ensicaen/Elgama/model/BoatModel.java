@@ -43,22 +43,16 @@ public class BoatModel {
         _y += _dy;
     }
 
-    public double scalar(Point2D vector) {
+    public double scalarProduct(Point2D vector) {
         return vector.getX() * _dx + vector.getY() * _dy;
     }
 
-    public double vectorialBetweenVectors(Point2D vector) {
-        return Math.sqrt(vector.getX() * vector.getX() + vector.getY() + vector.getY()) * Math.sqrt(_dx * _dx + _dy + _dy);
+    public double productBetweenNorm(Point2D vector) {
+        return Math.sqrt(vector.getX() * vector.getX() + vector.getY() * vector.getY()) * Math.sqrt(_dx * _dx + _dy * _dy);
     }
 
-
-
-
+    public double angleBetweenWindAndBoat( Point2D wind )
+    {
+        return Math.acos( scalarProduct( wind ) / productBetweenNorm( wind ) );
+    }
 }
-
-
-/* Creer une méthode qui prend un argument à partir d'une classe vent :point2D, angle du bateau et modifier la vitesse
-    du bateau selon le vent
-
-    PolReader
- */
