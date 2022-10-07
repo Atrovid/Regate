@@ -56,8 +56,6 @@ public class LoginView implements ILoginView {
             LoginView view = loader.getController();
             Scene scene = new Scene(root);
             view._stage = new Stage();
-
-
             view._stage.setTitle(Main.getMessageBundle().getString("project.title"));
             view._stage.setScene(scene);
             view._stage.setResizable(false);
