@@ -60,4 +60,11 @@ public final class BoatModelTest {
         thirdBoat.move();
         assertEquals( 0.0, thirdBoat.angleBetweenWindAndBoat( secondBoat_point ) );
     }
+
+    @Test
+    public void getBoatSpeedTest()
+    {
+
+    }
+
 }

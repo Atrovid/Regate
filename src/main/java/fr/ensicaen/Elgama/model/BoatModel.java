@@ -60,5 +60,19 @@ public class BoatModel {
     {
         double data[][] = speedTable.loadData();
         double strength = wind.getWindForce();
+        double angle = angleBetweenWindAndBoat( wind.getWindDirection() );
+
+        strength = strength / 2 - 1;
+        if ( strength > 14 ) {
+            strength = 14;
+        } else if ( strength < 0 ) {
+            strength = 0;
+        }
+        angle = angle /10;
+        if ( angle > 18 ) {
+            angle = 18;
+        }
+
+        return data[(int)angle][(int)strength];
     }
 }
