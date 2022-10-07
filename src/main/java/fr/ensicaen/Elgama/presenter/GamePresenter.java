@@ -26,7 +26,6 @@ public class GamePresenter {
     public GamePresenter( String nickName ) {
         _playerModel = new PlayerModel();
         _playerModel.setNickname(nickName);
-        setWindDir(new RandomWind()); //creer un deuxième constructeur pour modifier les types de vent
         initGame();
     }
 
@@ -62,6 +61,7 @@ public class GamePresenter {
 
     private void initGame() {
         _boatModel = new BoatModel();
+        setWindDir(new RandomWind());
     }
 
     private void setWindDir(IWind wind){
