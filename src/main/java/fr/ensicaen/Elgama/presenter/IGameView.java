@@ -1,13 +1,13 @@
 package fr.ensicaen.Elgama.presenter;
 
-import fr.ensicaen.Elgama.model.WaterBody;
+import fr.ensicaen.Elgama.model.game_board.Board;
 
 import java.awt.geom.Point2D;
 
 public interface IGameView {
     void addBoat( double x, double y );
 
-    void drawWaterBody(WaterBody map);
+    void drawWaterBody(Board map);
 
     void updateBoat(double dx, double dy, double angle );
 
