@@ -52,9 +52,9 @@ public class BoatModel {
         System.out.println( "\n\nboat table speed " + getBoatSpeed( speedTable, wind) );
 
         if ( Math.abs( _dx ) < getBoatSpeed( speedTable, wind) ) {
-            _dx += getBoatSpeed( speedTable, wind)*Math.sin(_anglePositive * Math.PI / 180);
+            _dx += Math.sin(_anglePositive * Math.PI / 180);
         } else {
-            _dx = getBoatSpeed( speedTable, wind)*Math.sin(_anglePositive * Math.PI / 180);
+            _dx = Math.sin(_anglePositive * Math.PI / 180);
         }
         if ( Math.abs( _dy ) < getBoatSpeed( speedTable, wind) ) {
             _dy += -getBoatSpeed( speedTable, wind)*Math.cos(_anglePositive * Math.PI / 180);
