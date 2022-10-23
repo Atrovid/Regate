@@ -1,19 +1,27 @@
 package fr.ensicaen.Elgama.presenter;
 
-import fr.ensicaen.Elgama.model.BoatModel;
+import fr.ensicaen.Elgama.model.*;
 
 // Remarque : l'animation n'est pas considérée comme étant du graphisme à proprement parlé.
 //            On peut la considérer comme une bibliothèque tiers de gestion de threading.
 //            On peut donc l'utiliser dans le presenter.
+import fr.ensicaen.Elgama.model.game_board.IWind;
 import fr.ensicaen.Elgama.model.PlayerModel;
+import fr.ensicaen.Elgama.model.game_board.RandomWind;
+import fr.ensicaen.Elgama.model.game_board.Board;
+import fr.ensicaen.Elgama.model.game_board.Buoy;
+import fr.ensicaen.Elgama.model.game_board.CheckPoint;
+import fr.ensicaen.Elgama.model.game_board.Shoreline;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.util.Duration;
+import java.awt.geom.Point2D;
 
 public class GamePresenter {
     private final PlayerModel _playerModel;
     private BoatModel _boatModel;
+    private Point2D _windDir;
     private IGameView _gameView;
     private boolean _started = false;
     private Timeline _timeline;
@@ -27,7 +35,11 @@ public class GamePresenter {
     public void setGameView( IGameView gameView ) {
         _gameView = gameView;
         _gameView.addBoat(_boatModel.getX(), _boatModel.getY());
-        _gameView.addBuoy(10,10);
+
+        Buoy[] buoyList = {new Buoy(new Point2D.Double(500,100), 20)};
+        CheckPoint[] cpList = {};
+        _gameView.drawWaterBody(new Board(new RandomWind(), new Shoreline(100, 'w'), buoyList, cpList ));
+        _gameView.setWind(_windDir);
     }
 
     public void handleUserAction( UserAction code ) {
@@ -55,6 +67,11 @@ public class GamePresenter {
 
     private void initGame() {
         _boatModel = new BoatModel();
+        setWindDir(new RandomWind());
+    }
+
+    private void setWindDir(IWind wind){
+        _windDir = wind.getWindDirection();
     }
 
     private void runGameLoop() {
@@ -71,6 +88,6 @@ public class GamePresenter {
     }
 
     private void render() {
-        _gameView.update(_boatModel.getDx(), _boatModel.getDy(), _boatModel.getAngle());
+        _gameView.updateBoat(_boatModel.getDx(), _boatModel.getDy(), _boatModel.getAngle());
     }
 }

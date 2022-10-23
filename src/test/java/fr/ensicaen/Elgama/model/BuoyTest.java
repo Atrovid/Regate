@@ -1,7 +1,7 @@
 package fr.ensicaen.Elgama.model;
 
+import fr.ensicaen.Elgama.model.game_board.Buoy;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
 
 import java.awt.geom.Point2D;
 

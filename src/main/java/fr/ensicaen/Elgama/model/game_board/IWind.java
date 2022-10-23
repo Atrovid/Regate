@@ -1,4 +1,4 @@
-package fr.ensicaen.Elgama.model;
+package fr.ensicaen.Elgama.model.game_board;
 
 import java.awt.geom.Point2D;
 

@@ -1,5 +1,8 @@
 package fr.ensicaen.Elgama.model;
 
+import fr.ensicaen.Elgama.model.game_board.IWind;
+import fr.ensicaen.Elgama.model.sailboat.PolarReader;
+
 import java.awt.geom.Point2D;
 
 
@@ -51,8 +54,30 @@ public class BoatModel {
         return Math.sqrt(vector.getX() * vector.getX() + vector.getY() * vector.getY()) * Math.sqrt(_dx * _dx + _dy * _dy);
     }
 
+
     public double angleBetweenWindAndBoat( Point2D wind )
     {
-        return Math.acos( scalarProduct( wind ) / productBetweenNorm( wind ) );
+        return Math.PI * Math.acos( scalarProduct( wind ) / productBetweenNorm( wind ) ) / 180;
+    }
+
+
+    public double getBoatSpeed(PolarReader speedTable, IWind wind )
+    {
+        double data[][] = speedTable.loadData();
+        double strength = wind.getWindForce();
+        double angle = angleBetweenWindAndBoat( wind.getWindDirection() );
+
+        strength = strength / 2 - 1;
+        if ( strength > 14 ) {
+            strength = 14;
+        } else if ( strength < 0 ) {
+            strength = 0;
+        }
+        angle = angle /10;
+        if ( angle > 18 ) {
+            angle = 18;
+        }
+
+        return data[(int)angle][(int)strength];
     }
 }

@@ -49,8 +49,6 @@ public final class BoatModelTest {
 
         assertEquals(275.86,secondBoat.productBetweenNorm(boat_point),0.1);
 
-
-        //assertEquals(0.0,secondBoat.vectorialBetweenVectors(secondBoat_point));
     }
 
 
@@ -59,5 +57,16 @@ public final class BoatModelTest {
     {
         thirdBoat.move();
         assertEquals( 0.0, thirdBoat.angleBetweenWindAndBoat( secondBoat_point ) );
+        thirdBoat.rotate(90);
+        thirdBoat.move();
+        //assertEquals( 90, thirdBoat.angleBetweenWindAndBoat( secondBoat_point ) );
+
     }
+
+    @Test
+    public void getBoatSpeedTest()
+    {
+
+    }
+
 }
