@@ -56,7 +56,7 @@ public class BoatModel {
             _dx = Math.sin(_anglePositive * Math.PI / 180);
         }
         if ( Math.abs( _dy ) < getBoatSpeed( speedTable, wind) ) {
-            _dy += -getBoatSpeed( speedTable, wind)*Math.cos(_anglePositive * Math.PI / 180);
+            _dy += getBoatSpeed( speedTable, wind)*Math.cos(_anglePositive * Math.PI / 180);
         } else {
             _dy = Math.cos(_anglePositive * Math.PI / 180);
         }
