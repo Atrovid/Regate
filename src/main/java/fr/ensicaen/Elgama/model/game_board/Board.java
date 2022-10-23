@@ -2,14 +2,14 @@ package fr.ensicaen.Elgama.model;
 
 import java.awt.geom.Point2D;
 
-public class WaterBody {
+public class Board {
 
     IWind _wind;
     Shoreline _shore;
     Buoy[] _buoyList;
     CheckPoint[] _checkPointList;
 
-    public WaterBody(IWind wind, Shoreline shore, Buoy[] buoyList, CheckPoint[] checkPointList) {
+    public Board(IWind wind, Shoreline shore, Buoy[] buoyList, CheckPoint[] checkPointList) {
         _wind = wind;
         _shore = shore;
         _buoyList = buoyList;
