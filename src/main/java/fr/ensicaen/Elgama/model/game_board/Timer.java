@@ -1,42 +1,42 @@
 package fr.ensicaen.Elgama.model.game_board;
 
 public class Timer {
-    int tSecInit;
-    int tMinInit;
-    int tMilliInit;
-    int tSecNow;
-    int tMinNow;
-    int tMilliNow;
+    int _tSecInit;
+    int _tMinInit;
+    int _tMilliInit;
+    int _tSecNow;
+    int _tMinNow;
+    int _tMilliNow;
 
     public Timer() {
-        this.tMilliInit = (int) System.currentTimeMillis();
-        this.tSecInit = (tMilliInit/ 1000) % 60;
-        this.tMinInit = (tMilliInit / 1000) / 60;
+        _tMilliInit = (int) System.currentTimeMillis();
+        _tSecInit = (_tMilliInit/ 1000) % 60;
+        _tMinInit = (_tMilliInit / 1000) / 60;
 
 
     }
 
     public void updateTimer() {
-        tMilliNow = (int) (System.currentTimeMillis() - tMilliInit);
-        tSecNow = (tMilliNow / 1000) % 60 - tSecInit;
-        tMinNow = (tMilliNow / 1000) / 60 - tMinInit;
+        _tMilliNow = (int) (System.currentTimeMillis() - _tMilliInit);
+        _tSecNow = (_tMilliNow / 1000) % 60 - _tSecInit;
+        _tMinNow = (_tMilliNow / 1000) / 60 - _tMinInit;
     }
 
     public int getTSecNow() {
-        return tSecNow;
+        return _tSecNow;
     }
 
     public int getTMinNow() {
-        return tMinNow;
+        return _tMinNow;
     }
 
     public int getTMilliNow() {
-        return tMilliNow;
+        return _tMilliNow;
     }
 
     public void resume() {
-        tMilliInit = (int) System.currentTimeMillis();
-        tSecInit =  (tMilliInit/ 1000) % 60;
-        tMinInit =  (tMilliInit / 1000) / 60;
+        _tMilliInit = (int) System.currentTimeMillis();
+        _tSecInit =  (_tMilliInit/ 1000) % 60;
+        _tMinInit =  (_tMilliInit / 1000) / 60;
     }
 }
