@@ -92,7 +92,6 @@ public class GamePresenter {
 
 
     private void update() {
-        setWindDir(new RandomWind());
         _boatModel.move(_speedTable, _wind);
     }
 
