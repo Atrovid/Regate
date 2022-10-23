@@ -1,4 +1,4 @@
-package fr.ensicaen.Elgama.model;
+package fr.ensicaen.Elgama.model.game_board;
 
 import fr.ensicaen.Elgama.model.game_board.Buoy;
 import fr.ensicaen.Elgama.model.game_board.CheckPoint;
