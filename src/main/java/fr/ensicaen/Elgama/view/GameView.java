@@ -9,6 +9,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
@@ -16,6 +17,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Ellipse;
 import javafx.stage.Stage;
 
+import java.awt.geom.Point2D;
 import java.io.IOException;
 
 public class GameView implements IGameView {
@@ -24,12 +26,14 @@ public class GameView implements IGameView {
     private Ellipse _boat;
     @FXML
     private AnchorPane _base;
+    @FXML
+    private ImageView _windImage;
 
     public void setGamePresenter( GamePresenter gamePresenter ) {
         _gamePresenter = gamePresenter;
     }
 
-    public void rotate( Ellipse boat, double val ) {
+    public void rotateBoat(Ellipse boat, double val ) {
         boat.setRotate(val);
     }
 
@@ -50,9 +54,16 @@ public class GameView implements IGameView {
         boat.setLayoutY(boat.getLayoutY() + dy);
     }
 
-    public void update( double dx, double dy, double angle ) {
-        rotate(_boat, angle);
+    public void updateBoat(double dx, double dy, double angle ) {
+        rotateBoat(_boat, angle);
         move(_boat, dx, dy);
+    }
+
+    @Override
+    public void setWind(Point2D direction) {
+        javafx.geometry.Point2D imageDirection = new javafx.geometry.Point2D(-1,1);
+        javafx.geometry.Point2D newWindDirection = new javafx.geometry.Point2D(direction.getX(),direction.getY());
+        _windImage.setRotate(-imageDirection.angle(newWindDirection));
     }
 
     public void show() {
