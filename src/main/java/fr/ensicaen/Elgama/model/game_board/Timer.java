@@ -1,4 +1,4 @@
-package fr.ensicaen.Elgama.model;
+package fr.ensicaen.Elgama.model.game_board;
 
 public class Timer {
     int tSecInit;

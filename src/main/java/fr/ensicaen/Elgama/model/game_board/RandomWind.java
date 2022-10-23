@@ -1,5 +1,7 @@
-package fr.ensicaen.Elgama.model;
+package fr.ensicaen.Elgama.model.game_board;
 
+
+import fr.ensicaen.Elgama.model.IWind;
 
 import java.awt.geom.Point2D;
 
