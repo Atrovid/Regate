@@ -1,5 +1,8 @@
 package fr.ensicaen.Elgama.model;
 
+import fr.ensicaen.Elgama.model.game_board.IWind;
+import fr.ensicaen.Elgama.model.sailboat.PolarReader;
+
 import java.awt.geom.Point2D;
 
 
@@ -58,7 +61,7 @@ public class BoatModel {
     }
 
 
-    public double getBoatSpeed( PolReader speedTable, IWind wind )
+    public double getBoatSpeed(PolarReader speedTable, IWind wind )
     {
         double data[][] = speedTable.loadData();
         double strength = wind.getWindForce();

@@ -1,16 +1,15 @@
 package fr.ensicaen.Elgama.view;
 
-import fr.ensicaen.Elgama.model.Buoy;
-import fr.ensicaen.Elgama.model.CheckPoint;
-import fr.ensicaen.Elgama.model.IMapElementVisitor;
-import fr.ensicaen.Elgama.model.Shoreline;
-import javafx.fxml.FXML;
+import fr.ensicaen.Elgama.model.game_board.Buoy;
+import fr.ensicaen.Elgama.model.game_board.CheckPoint;
+import fr.ensicaen.Elgama.model.game_board.IBoardElementVisitor;
+import fr.ensicaen.Elgama.model.game_board.Shoreline;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Ellipse;
 import javafx.scene.shape.Rectangle;
 
-public class MapElementView implements IMapElementVisitor {
+public class MapElementView implements IBoardElementVisitor {
     private final AnchorPane _base;
 
     public MapElementView(AnchorPane base) {

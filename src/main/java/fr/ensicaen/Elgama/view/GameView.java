@@ -1,6 +1,6 @@
 package fr.ensicaen.Elgama.view;
 
-import fr.ensicaen.Elgama.model.WaterBody;
+import fr.ensicaen.Elgama.model.game_board.Board;
 import fr.ensicaen.Elgama.presenter.GamePresenter;
 import fr.ensicaen.Elgama.presenter.IGameView;
 import fr.ensicaen.Elgama.presenter.UserAction;
@@ -44,7 +44,7 @@ public class GameView implements IGameView {
         return boat;
     }
 
-    public void drawWaterBody(WaterBody map) {
+    public void drawWaterBody(Board map) {
         MapElementView visitor = new MapElementView(_base);
         map.accept(visitor, null);
     }

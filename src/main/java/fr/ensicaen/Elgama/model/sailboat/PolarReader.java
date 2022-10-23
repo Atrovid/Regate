@@ -1,4 +1,4 @@
-package fr.ensicaen.Elgama.model;
+package fr.ensicaen.Elgama.model.sailboat;
 
 import java.io.File;
 import java.util.Scanner;
