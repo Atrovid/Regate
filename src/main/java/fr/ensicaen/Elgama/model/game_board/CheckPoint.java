@@ -1,12 +1,9 @@
 package fr.ensicaen.Elgama.model.game_board;
 
-import fr.ensicaen.Elgama.model.IMapElement;
-import fr.ensicaen.Elgama.model.IMapElementVisitor;
-
 import java.awt.geom.Line2D;
 import java.awt.geom.Point2D;
 
-public class CheckPoint implements IMapElement {
+public class CheckPoint implements IBoardElement {
     private final Point2D p1, p2;
     private final Line2D line;
 
@@ -34,7 +31,7 @@ public class CheckPoint implements IMapElement {
     }
 
     @Override
-    public Object accept(IMapElementVisitor visitor, Object o) {
+    public Object accept(IBoardElementVisitor visitor, Object o) {
         return visitor.visit(this, o);
     }
 

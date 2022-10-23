@@ -1,8 +1,8 @@
-package fr.ensicaen.Elgama.model;
+package fr.ensicaen.Elgama.model.game_board;
 
 import java.awt.geom.Point2D;
 
-public class Shoreline implements IMapElement {
+public class Shoreline implements IBoardElement {
     private final int pos;
     private final boolean vertical;
     private final boolean superior;
@@ -63,7 +63,7 @@ public class Shoreline implements IMapElement {
     }
 
     @Override
-    public Object accept(IMapElementVisitor visitor, Object o) {
+    public Object accept(IBoardElementVisitor visitor, Object o) {
         return visitor.visit(this, o);
     }
 

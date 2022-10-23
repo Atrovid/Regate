@@ -1,8 +1,8 @@
-package fr.ensicaen.Elgama.model;
+package fr.ensicaen.Elgama.model.game_board;
 
 import java.awt.geom.Point2D;
 
-public class Buoy implements IMapElement {
+public class Buoy implements IBoardElement {
     private final Point2D pos;
     private final int radius;
 
@@ -45,7 +45,7 @@ public class Buoy implements IMapElement {
     }
 
     @Override
-    public Object accept(IMapElementVisitor visitor, Object o) {
+    public Object accept(IBoardElementVisitor visitor, Object o) {
         return visitor.visit(this, o);
     }
 
