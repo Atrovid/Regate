@@ -6,27 +6,34 @@ public class Buoy implements IMapElement {
     private final Point2D pos;
     private final int radius;
 
+    public Point2D getPos() {
+        return pos;
+    }
+
+    public int getRadius() {
+        return radius;
+    }
+
     public Buoy(Point2D pos, int radius) {
         this.pos = pos;
         this.radius = radius;
     }
 
     @Override
-    public boolean isColliding(Point2D from, Point2D to){
-        double dist = (int)from.distance(to);
+    public boolean isColliding(Point2D from, Point2D to) {
+        double dist = (int) from.distance(to);
 
-        if (dist == 0){
+        if (dist == 0) {
             return isPointColliding(from);
         }
         double incrementX = (to.getX() - from.getX()) / dist;
         double incrementY = (to.getY() - from.getY()) / dist;
-        Point2D p = from;
 
-        for(int i=0 ; i<dist ; i++){
-            double x = p.getX() + incrementX;
-            double y = p.getY() + incrementY;
-            p.setLocation((int)x, (int)y);
-            if(isPointColliding(p)){
+        for (int i = 0; i < dist; i++) {
+            double x = from.getX() + incrementX;
+            double y = from.getY() + incrementY;
+            from.setLocation((int) x, (int) y);
+            if (isPointColliding(from)) {
                 return true;
             }
         }
@@ -36,4 +43,10 @@ public class Buoy implements IMapElement {
     public boolean isPointColliding(Point2D point) {
         return (point.distance(pos) <= radius);
     }
+
+    @Override
+    public Object accept(IMapElementVisitor visitor, Object o) {
+        return visitor.visit(this, o);
+    }
+
 }
