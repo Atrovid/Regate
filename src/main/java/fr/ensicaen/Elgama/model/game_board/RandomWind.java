@@ -10,9 +10,9 @@ public class RandomWind implements IWind {
     Point2D _dir;
 
     public RandomWind() {
-        this._force = (float) (16.0 * Math.random());
+        _force = (float) (16.0 * Math.random());
 
-        this._dir = createWindDirection();
+        _dir = createWindDirection();
     }
 
     @Override
