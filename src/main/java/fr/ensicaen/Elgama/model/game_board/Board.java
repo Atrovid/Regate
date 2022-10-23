@@ -16,6 +16,8 @@ public class Board {
         _checkPointList = checkPointList;
     }
 
+
+
     public Point2D getWindDirection() {
         return _wind.getWindDirection();
     }

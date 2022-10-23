@@ -10,8 +10,9 @@ public class RandomWind implements IWind {
     Point2D _dir;
 
     public RandomWind() {
-        this._force = (float) (16.0 * Math.random());
-        this._dir = createWindDirection();
+        _force = (float) (16.0 * Math.random());
+
+        _dir = createWindDirection();
     }
 
     @Override
@@ -26,6 +27,8 @@ public class RandomWind implements IWind {
     public Point2D createWindDirection() {
         double _x = Math.random();
         double _y = Math.random();
+
+
         Point2D WindDir = new Point2D.Double(randomToDirection(_x),
                 randomToDirection(_y));
         return normalize(WindDir);

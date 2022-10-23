@@ -12,6 +12,7 @@ import fr.ensicaen.Elgama.model.game_board.Board;
 import fr.ensicaen.Elgama.model.game_board.Buoy;
 import fr.ensicaen.Elgama.model.game_board.CheckPoint;
 import fr.ensicaen.Elgama.model.game_board.Shoreline;
+import fr.ensicaen.Elgama.model.sailboat.PolarReader;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -25,10 +26,16 @@ public class GamePresenter {
     private IGameView _gameView;
     private boolean _started = false;
     private Timeline _timeline;
+    private PolarReader _speedTable;
+    private IWind _wind;
+
 
     public GamePresenter( String nickName ) {
         _playerModel = new PlayerModel();
         _playerModel.setNickname(nickName);
+        _wind = new RandomWind();
+        _speedTable = new PolarReader();
+
         initGame();
     }
 
@@ -83,8 +90,9 @@ public class GamePresenter {
         _timeline.play();
     }
 
+
     private void update() {
-        _boatModel.move();
+        _boatModel.move(_speedTable, _wind);
     }
 
     private void render() {

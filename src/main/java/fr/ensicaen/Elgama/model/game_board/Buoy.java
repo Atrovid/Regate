@@ -3,20 +3,20 @@ package fr.ensicaen.Elgama.model.game_board;
 import java.awt.geom.Point2D;
 
 public class Buoy implements IBoardElement {
-    private final Point2D pos;
-    private final int radius;
+    private final Point2D _pos;
+    private final int _radius;
 
     public Point2D getPos() {
-        return pos;
+        return _pos;
     }
 
     public int getRadius() {
-        return radius;
+        return _radius;
     }
 
     public Buoy(Point2D pos, int radius) {
-        this.pos = pos;
-        this.radius = radius;
+        _pos = pos;
+        _radius = radius;
     }
 
     @Override
@@ -41,7 +41,7 @@ public class Buoy implements IBoardElement {
     }
 
     public boolean isPointColliding(Point2D point) {
-        return (point.distance(pos) <= radius);
+        return (point.distance(_pos) <= _radius);
     }
 
     @Override
