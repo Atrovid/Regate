@@ -4,9 +4,9 @@ import java.awt.geom.Line2D;
 import java.awt.geom.Point2D;
 
 public class CheckPoint implements IBoardElement {
-    private final Point2D p1, p2;
+    private final Point2D p1, p2; // FIXME en terme de code propre il est préférable d'utiliser deux lmignes de déclaration
     private final Line2D line;
-
+// FIXME accesseurs jamais utilisés.................
     public Point2D getP1() {
         return p1;
     }

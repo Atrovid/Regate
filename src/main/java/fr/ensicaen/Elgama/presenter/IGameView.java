@@ -9,7 +9,7 @@ public interface IGameView {
 
     void drawWaterBody(Board map);
 
-    void updateBoat(double dx, double dy, double angle );
+    void updateBoat(double dx, double dy, double angle ); // FIXME pourquoi un espace avant la parenthèse finale ici et pas ailleurs ?
 
     void setWind(Point2D direction);
 }

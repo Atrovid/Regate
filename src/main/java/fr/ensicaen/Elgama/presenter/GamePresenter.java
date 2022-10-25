@@ -27,15 +27,15 @@ public class GamePresenter {
     private boolean _started = false;
     private Timeline _timeline;
     private PolarReader _speedTable;
-    private IWind _wind;
-
+    private IWind _wind; // FIXME est-ce une valeur constante ? Dans ce cas -> final
+// FIXME pourquoi deux lignes vides pour espacer les données membres des méthodes -> cela m'oblige a faire plus de scrolling !
 
     public GamePresenter( String nickName ) {
         _playerModel = new PlayerModel();
         _playerModel.setNickname(nickName);
         _wind = new RandomWind();
         _speedTable = new PolarReader();
-
+// FIXME pourquoi une ligne vide ici ??
         initGame();
     }
 

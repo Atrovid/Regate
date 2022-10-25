@@ -1,5 +1,6 @@
 package fr.ensicaen.Elgama.view;
 
+// FIXME HORREUR !!!! IL y a un couplage entre la vue et le modèle
 import fr.ensicaen.Elgama.model.game_board.Buoy;
 import fr.ensicaen.Elgama.model.game_board.CheckPoint;
 import fr.ensicaen.Elgama.model.game_board.IBoardElementVisitor;
@@ -25,11 +26,12 @@ public class MapElementView implements IBoardElementVisitor {
     }
 
     @Override
-    public Object visit(Shoreline sl, Object o) { //Replace 5000 by else
+    public Object visit(Shoreline sl, Object o) { //Replace 5000 by else (FIXME c'est quoi ce message en commentaire ?)
+        // FIXME : il ne faut mettre aucune logique dans une vue.
         Rectangle rect = new Rectangle();
         if (sl.isVertical()){
             rect.setY(0.0);
-            if(sl.isSuperior()){//East
+            if(sl.isSuperior()){//East (FIXME ce commentaire rend compte d'un manque de proprété du code -> refondre ce code).
                 rect.setX(sl.getPos());
                 rect.setWidth(5000);
                 rect.setHeight(5000);

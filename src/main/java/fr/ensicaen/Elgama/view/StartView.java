@@ -17,9 +17,9 @@ public class StartView implements IStartView {
     private StartPresenter _startPresenter;
     private Stage _stage;
     @FXML
-    private TextField _nickName;
+    private TextField _nickName; // FIXME inutilisé.
     @FXML
-    private Label _errorMessage;
+    private Label _errorMessage; // FIXME inutilisé.
 
     public void setStartPresenter(StartPresenter presenter ) {
         _startPresenter = presenter;

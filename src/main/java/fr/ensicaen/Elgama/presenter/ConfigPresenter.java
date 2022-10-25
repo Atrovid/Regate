@@ -1,5 +1,5 @@
 package fr.ensicaen.Elgama.presenter;
-
+// FIXME imports non utilisés
 import fr.ensicaen.Elgama.Main;
 import fr.ensicaen.Elgama.model.PlayerModel;
 import fr.ensicaen.Elgama.view.ConfigView;
@@ -9,7 +9,7 @@ import java.io.IOException;
 
 public final class ConfigPresenter {
     private IConfigView _configView;
-    private String _nickname;
+    private String _nickname; // FIXME est-ce une valeur constante ?-> final
 
     public ConfigPresenter( String nickname ) {
         _nickname = nickname;

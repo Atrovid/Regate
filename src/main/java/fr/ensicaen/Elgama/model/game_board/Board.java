@@ -3,7 +3,7 @@ package fr.ensicaen.Elgama.model.game_board;
 import java.awt.geom.Point2D;
 
 public class Board {
-
+// FIXME des attributs de visibilité package !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     IWind _wind;
     Shoreline _shore;
     Buoy[] _buoyList;
@@ -17,7 +17,7 @@ public class Board {
     }
 
 
-
+    // FIXME les deux méthodes suivantes en sont jamais utilisées (à supprimer)
     public Point2D getWindDirection() {
         return _wind.getWindDirection();
     }

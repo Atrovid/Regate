@@ -1,5 +1,5 @@
 package fr.ensicaen.Elgama;
-
+// FIXME le nom d'un paquet est en snake_case
 import fr.ensicaen.Elgama.presenter.StartPresenter;
 import fr.ensicaen.Elgama.view.StartView;
 import javafx.application.Application;
@@ -26,7 +26,7 @@ public final class Main extends Application {
         view.setStartPresenter(presenter);
         view.show();
 
-
+// FIXME pourquoi ces lignes vides ?
 
     }
 

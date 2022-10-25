@@ -6,11 +6,11 @@ public class Shoreline implements IBoardElement {
     private final int pos;
     private final boolean vertical;
     private final boolean superior;
-
+// FIXME je n'ai rien compris à vertical et superior
     public int getPos() {
         return pos;
     }
-
+// FIXME ces accesseurs sont révélateurs d'une mauvaise conception -> les calculs dans Vue devraient être faits ici
     public boolean isVertical() {
         return vertical;
     }

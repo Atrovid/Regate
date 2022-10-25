@@ -1,5 +1,5 @@
 package fr.ensicaen.Elgama.presenter;
-
+// FIXME les deux paquets ci-dessous ne sont pas utilisés...
 import fr.ensicaen.Elgama.Main;
 import fr.ensicaen.Elgama.view.GameView;
 import fr.ensicaen.Elgama.view.LoginView;

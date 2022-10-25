@@ -1,6 +1,7 @@
 package fr.ensicaen.Elgama.model.game_board;
 
 public class Timer {
+    // FIXME HORREUR !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     int _tSecInit;
     int _tMinInit;
     int _tMilliInit;
@@ -28,7 +29,7 @@ public class Timer {
 
     public int getTMinNow() {
         return _tMinNow;
-    }
+    } // FIXME jamais utilisé
 
     public int getTMilliNow() {
         return _tMilliNow;

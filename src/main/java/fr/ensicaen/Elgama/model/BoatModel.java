@@ -13,7 +13,7 @@ public class BoatModel {
     private double _dx = 0;
     private double _dy = 0;
     private int _anglePositive = 0;
-    private Board _board;
+    private Board _board; // FIXME donnée membre jamais utilisée.
 
     public double getX() {
         return _x;
@@ -39,7 +39,7 @@ public class BoatModel {
         return _dy;
     }
 
-    public void move() {
+    public void move() { // FIXME supprimer ces lignes vides qui ne font qu'augmenter la taille du fichier sans rien apporter
         _dx = Math.sin(_anglePositive * Math.PI / 180);
 
         _dy = -Math.cos(_anglePositive * Math.PI / 180);
@@ -80,7 +80,7 @@ public class BoatModel {
         return Math.PI * Math.acos( scalarProduct( wind ) / productBetweenNorm( wind ) ) / 180;
     }
 
-
+    // FIXME qu'est-ce que ce formatage non Java (l'accolade doit être à la fin de la déclaration)
     public double getBoatSpeed(PolarReader speedTable, IWind wind)
     {
         double data[][] = speedTable.loadData();

@@ -1,13 +1,13 @@
 package fr.ensicaen.Elgama.model.game_board;
 
-
+// FIXME beaucoup de lignes vides inutiles -> augmentent la longueur du fichier à éditer inutilement
 import java.awt.geom.Point2D;
 
 public class RandomWind implements IWind {
 
-    float _force;
+    float _force; // FIXME force en anglais ?
 
-    Point2D _dir;
+    Point2D _dir; // FIXME dir pour directory ou direction ? Un identificateur doit être explicite.
 
     public RandomWind() {
         _force = (float) (16.0 * Math.random());
@@ -25,10 +25,10 @@ public class RandomWind implements IWind {
     }
 
     public Point2D createWindDirection() {
-        double _x = Math.random();
+        double _x = Math.random(); // FIXME revoir la règle de nommage des variables
         double _y = Math.random();
 
-
+        // FIXME revoir la règle de nommage des variables
         Point2D WindDir = new Point2D.Double(randomToDirection(_x),
                 randomToDirection(_y));
         return normalize(WindDir);

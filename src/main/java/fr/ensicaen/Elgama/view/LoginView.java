@@ -1,7 +1,7 @@
 package fr.ensicaen.Elgama.view;
 
 import fr.ensicaen.Elgama.presenter.ILoginView;
-import fr.ensicaen.Elgama.presenter.IStartView;
+import fr.ensicaen.Elgama.presenter.IStartView; // FIXME non utilisé
 import fr.ensicaen.Elgama.presenter.LoginPresenter;
 import fr.ensicaen.Elgama.Main;
 import javafx.fxml.FXML;
@@ -48,6 +48,7 @@ public class LoginView implements ILoginView {
     public static class LoginViewFactory {
         private LoginViewFactory() {
             // Factory class as Utility class where the constructor is private
+            // FIXME supprimer ce commentaire devenu inutile. Il n'avait qu'un vertue pédagogique
         }
 
         public static LoginView createView() throws IOException {

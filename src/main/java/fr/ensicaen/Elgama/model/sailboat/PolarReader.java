@@ -5,13 +5,14 @@ import java.util.Scanner;
 import java.io.FileNotFoundException;
 
 public class PolarReader {
-    private String _file;
+    private String _file; // FIXME est-ce une constante ? -> final
 
     public PolarReader(){
         _file = "data/polaire-figaro.pol";
     }
 
     public double[][] loadData(){
+        // FIXME déclaration d'une matrice de style C et pas Java !
         double data[][] = new double[19][14];
         int j=0;
         try {
