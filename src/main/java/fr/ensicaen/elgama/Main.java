@@ -1,4 +1,5 @@
 package fr.ensicaen.elgama;
+
 import fr.ensicaen.elgama.presenter.StartPresenter;
 import fr.ensicaen.elgama.view.StartView;
 import javafx.application.Application;
@@ -6,9 +7,9 @@ import javafx.stage.Stage;
 
 import java.util.ResourceBundle;
 
-public final class  Main extends Application {
+public final class Main extends Application {
 
-    public static void main( String[] args ) {
+    public static void main(String[] args) {
         launch(args);
     }
 
@@ -17,16 +18,13 @@ public final class  Main extends Application {
     }
 
     @Override
-    public void start( final Stage primaryStage ) throws Exception {
+    public void start(final Stage primaryStage) throws Exception {
         primaryStage.setTitle(getMessageBundle().getString("project.title"));
         StartView view = StartView.StartViewFactory.createView(primaryStage);
         StartPresenter presenter = new StartPresenter();
         presenter.setStartView(view);
         view.setStartPresenter(presenter);
         view.show();
-
-// FIXME pourquoi ces lignes vides ?
-
     }
 
     @Override

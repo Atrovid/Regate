@@ -1,5 +1,5 @@
 package fr.ensicaen.elgama.presenter;
-// FIXME les deux paquets ci-dessous ne sont pas utilisés...
+
 import fr.ensicaen.elgama.view.LoginView;
 import fr.ensicaen.elgama.view.StartView;
 
@@ -8,7 +8,7 @@ import java.io.IOException;
 public class StartPresenter {
     private IStartView _startView;
 
-    public void setStartView( StartView startview ) {
+    public void setStartView(StartView startview) {
         _startView = startview;
     }
 

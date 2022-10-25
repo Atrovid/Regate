@@ -7,8 +7,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -16,12 +14,9 @@ import java.io.IOException;
 public class StartView implements IStartView {
     private StartPresenter _startPresenter;
     private Stage _stage;
-    @FXML
-    private TextField _nickName; // FIXME inutilisé.
-    @FXML
-    private Label _errorMessage; // FIXME inutilisé.
 
-    public void setStartPresenter(StartPresenter presenter ) {
+
+    public void setStartPresenter(StartPresenter presenter) {
         _startPresenter = presenter;
     }
 
@@ -44,7 +39,7 @@ public class StartView implements IStartView {
             // Factory class as Utility class where the constructor is private
         }
 
-        public static StartView createView( Stage primaryStage ) throws IOException {
+        public static StartView createView(Stage primaryStage) throws IOException {
             FXMLLoader loader = new FXMLLoader(StartView.class.getResource("StartDialog.fxml"), Main.getMessageBundle());
             Parent root = loader.load();
             StartView view = loader.getController();
