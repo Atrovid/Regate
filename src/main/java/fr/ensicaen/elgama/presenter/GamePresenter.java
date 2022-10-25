@@ -17,39 +17,37 @@ import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.util.Duration;
+
 import java.awt.geom.Point2D;
 
 public class GamePresenter {
     private final PlayerModel _playerModel;
     private BoatModel _boatModel;
-    private Point2D _windDir;
     private IGameView _gameView;
     private boolean _started = false;
     private Timeline _timeline;
-    private PolarReader _speedTable;
-    private IWind _wind; // FIXME est-ce une valeur constante ? Dans ce cas -> final
-// FIXME pourquoi deux lignes vides pour espacer les données membres des méthodes -> cela m'oblige a faire plus de scrolling !
+    private final PolarReader _speedTable;
+    private final IWind _wind;
 
-    public GamePresenter( String nickName ) {
+    public GamePresenter(String nickName) {
         _playerModel = new PlayerModel();
         _playerModel.setNickname(nickName);
         _wind = new RandomWind();
         _speedTable = new PolarReader();
-// FIXME pourquoi une ligne vide ici ??
         initGame();
     }
 
-    public void setGameView( IGameView gameView ) {
+    public void setGameView(IGameView gameView) {
         _gameView = gameView;
         _gameView.addBoat(_boatModel.getX(), _boatModel.getY());
 
-        Buoy[] buoyList = {new Buoy(new Point2D.Double(500,100), 20)};
+        Buoy[] buoyList = {new Buoy(new Point2D.Double(500, 100), 20)};
         CheckPoint[] cpList = {};
-        _gameView.drawWaterBody(new Board(new RandomWind(), new Shoreline(100, 'w'), buoyList, cpList ));
-        _gameView.setWind(_windDir);
+        _gameView.drawWaterBody(new Board(new RandomWind(), new Shoreline(100, 'w'), buoyList, cpList));
+        _gameView.setWind(_wind.getWindDirection());
     }
 
-    public void handleUserAction( UserAction code ) {
+    public void handleUserAction(UserAction code) {
         if (code == UserAction.START) {
             startGame();
         } else {
@@ -64,7 +62,7 @@ public class GamePresenter {
         }
     }
 
-    private void changeDirection( UserAction action ) {
+    private void changeDirection(UserAction action) {
         if (action == UserAction.LEFT) {
             _boatModel.rotate(-2);
         } else if (action == UserAction.RIGHT) {
@@ -74,12 +72,8 @@ public class GamePresenter {
 
     private void initGame() {
         _boatModel = new BoatModel();
-        setWindDir(new RandomWind());
     }
 
-    private void setWindDir(IWind wind){
-        _windDir = wind.getWindDirection();
-    }
 
     private void runGameLoop() {
         _timeline = new Timeline(new KeyFrame(Duration.millis(50), onFinished -> {
