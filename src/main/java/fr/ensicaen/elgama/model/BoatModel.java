@@ -3,7 +3,7 @@ package fr.ensicaen.elgama.model;
 import fr.ensicaen.elgama.model.game_board.IWind;
 import fr.ensicaen.elgama.model.sailboat.PolarReader;
 
-import java.awt.geom.Point2D;
+import javafx.geometry.Point2D;
 
 
 public class BoatModel {
@@ -12,7 +12,6 @@ public class BoatModel {
     private double _dx = 0;
     private double _dy = 0;
     private int _anglePositive = 0;
-
 
     public double getX() {
         return _x;
@@ -38,59 +37,38 @@ public class BoatModel {
         return _dy;
     }
 
-    public void move() {
-        _dx = Math.sin(_anglePositive * Math.PI / 180);
-        _dy = -Math.cos(_anglePositive * Math.PI / 180);
-        _x += _dx;
-        _y += _dy;
-    }
-
     public void move(PolarReader speedTable, IWind wind) {
-
-        if (Math.abs(_dx) < getBoatSpeed(speedTable, wind)) {
-            _dx += getBoatSpeed(speedTable, wind) * Math.sin(_anglePositive * Math.PI / 180);
-        } else {
-            _dx = Math.sin(_anglePositive * Math.PI / 180);
-        }
-        if (Math.abs(_dy) < getBoatSpeed(speedTable, wind)) {
-            _dy += getBoatSpeed(speedTable, wind) * Math.cos(_anglePositive * Math.PI / 180);
-        } else {
-            _dy = Math.cos(_anglePositive * Math.PI / 180);
-        }
-
+        Point2D speedDir = angleToVector(_anglePositive);
+        Point2D speed = speedDir.multiply(getBoatSpeed(speedTable, wind));
+        _dx = speed.getX();
+        _dy = speed.getY();
         _x += _dx;
         _y += _dy;
     }
 
-
-    public double scalarProduct(Point2D vector) {
-        return vector.getX() * _dx + vector.getY() * _dy;
+    public Point2D angleToVector(int angle) {
+        return new Point2D(Math.sin(angle * Math.PI / 180), -Math.cos(angle * Math.PI / 180));
     }
-
-    public double productBetweenNorm(Point2D vector) {
-        return Math.sqrt(vector.getX() * vector.getX() + vector.getY() * vector.getY()) * Math.sqrt(_dx * _dx + _dy * _dy);
-    }
-
-
-    public double angleBetweenWindAndBoat(Point2D wind) {
-        return Math.PI * Math.acos(scalarProduct(wind) / productBetweenNorm(wind)) / 180;
-    }
-
 
     public double getBoatSpeed(PolarReader speedTable, IWind wind) {
-        double data[][] = speedTable.loadData();
         float strength = wind.getWindForce();
-        double angle = angleBetweenWindAndBoat(wind.getWindDirection());
-        strength = strength / 2 - 1;
-        if (strength > 14) {
-            strength = 14;
-        } else if (strength < 0) {
-            strength = 0;
+        int strengthRounded;
+        if (strength > 30) {
+            strengthRounded = 30;
+        } else if (strength < 4) {
+            strengthRounded = 4;
+        } else {
+            strengthRounded = Math.round(strength / 2) * 2;
         }
-        angle = angle / 10;
-        if (angle > 18) {
-            angle = 18;
-        }
-        return data[(int) angle][(int) strength];
+        int strengthIndex = strengthRounded / 2 - 2;
+
+        java.awt.geom.Point2D windDir = wind.getWindDirection();
+        Point2D boatDir = angleToVector(_anglePositive);
+        double diffAngle = 180 - boatDir.angle(windDir.getX(), windDir.getY());
+        int angleRounded = (int) Math.round(diffAngle / 10) * 10;
+        int angleIndex = angleRounded / 10;
+
+        double[][] data = speedTable.loadData();
+        return data[angleIndex][strengthIndex];
     }
 }
