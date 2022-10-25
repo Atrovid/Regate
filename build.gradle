@@ -10,7 +10,7 @@ version '0.1'
 [compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
 
 application {
-    mainClass = 'fr.ensicaen.Elgama.Main'
+    mainClass = 'fr.ensicaen.elgama.Main'
 }
 
 repositories {
