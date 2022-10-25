@@ -1,5 +1,6 @@
 package fr.ensicaen.Elgama.model;
 
+import fr.ensicaen.Elgama.model.game_board.Shoreline;
 import org.junit.jupiter.api.Test;
 
 import java.awt.geom.Point2D;

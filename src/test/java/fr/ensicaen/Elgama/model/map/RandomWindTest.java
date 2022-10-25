@@ -1,12 +1,10 @@
 package fr.ensicaen.Elgama.model.map;
 
-import fr.ensicaen.Elgama.model.RandomWind;
-import fr.ensicaen.Elgama.model.IWind;
+import fr.ensicaen.Elgama.model.game_board.RandomWind;
+import fr.ensicaen.Elgama.model.game_board.IWind;
 import org.junit.jupiter.api.Test;
 
 import java.awt.geom.Point2D;
-import java.util.Arrays;
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 

@@ -1,13 +1,13 @@
-package fr.ensicaen.Elgama.model;
+package fr.ensicaen.Elgama.model.sailboat;
 
 import java.io.File;
 import java.util.Scanner;
 import java.io.FileNotFoundException;
 
-public class PolReader {
+public class PolarReader {
     private String _file;
 
-    public PolReader(){
+    public PolarReader(){
         _file = "data/polaire-figaro.pol";
     }
 

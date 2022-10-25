@@ -1,5 +1,6 @@
 package fr.ensicaen.Elgama.model;
 
+import fr.ensicaen.Elgama.model.sailboat.PolarReader;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -8,7 +9,7 @@ public class PolReaderTest {
 
     @Test
     void does_polar_reader_return_the_good_values(){
-        PolReader pol = new PolReader();
+        PolarReader pol = new PolarReader();
         double data[][] = pol.loadData();
         assertTrue(data[0][0]==0.00);
         assertTrue(data[18][13]==9.00);

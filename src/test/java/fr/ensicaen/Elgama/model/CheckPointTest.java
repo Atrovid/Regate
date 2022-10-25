@@ -1,6 +1,6 @@
 package fr.ensicaen.Elgama.model;
 
-import fr.ensicaen.Elgama.model.CheckPoint;
+import fr.ensicaen.Elgama.model.game_board.CheckPoint;
 import org.junit.jupiter.api.Test;
 
 import java.awt.geom.Point2D;

@@ -1,5 +1,6 @@
 package fr.ensicaen.Elgama.model;
 
+import fr.ensicaen.Elgama.model.game_board.Timer;
 import org.junit.jupiter.api.Test;
 
 import java.util.concurrent.TimeUnit;
