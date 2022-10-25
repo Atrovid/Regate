@@ -1,33 +1,23 @@
 package fr.ensicaen.elgama.presenter;
 
-import fr.ensicaen.elgama.model.*;
-
-// Remarque : l'animation n'est pas considérée comme étant du graphisme à proprement parlé.
-//            On peut la considérer comme une bibliothèque tiers de gestion de threading.
-//            On peut donc l'utiliser dans le presenter.
-import fr.ensicaen.elgama.model.game_board.IWind;
+import fr.ensicaen.elgama.model.BoatModel;
 import fr.ensicaen.elgama.model.PlayerModel;
-import fr.ensicaen.elgama.model.game_board.RandomWind;
-import fr.ensicaen.elgama.model.game_board.Board;
-import fr.ensicaen.elgama.model.game_board.Buoy;
-import fr.ensicaen.elgama.model.game_board.CheckPoint;
-import fr.ensicaen.elgama.model.game_board.Shoreline;
+import fr.ensicaen.elgama.model.game_board.*;
 import fr.ensicaen.elgama.model.sailboat.PolarReader;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.util.Duration;
-
 import java.awt.geom.Point2D;
 
 public class GamePresenter {
     private final PlayerModel _playerModel;
+    private final PolarReader _speedTable;
+    private final IWind _wind;
     private BoatModel _boatModel;
     private IGameView _gameView;
     private boolean _started = false;
     private Timeline _timeline;
-    private final PolarReader _speedTable;
-    private final IWind _wind;
 
     public GamePresenter(String nickName) {
         _playerModel = new PlayerModel();
@@ -83,7 +73,6 @@ public class GamePresenter {
         _timeline.setCycleCount(Animation.INDEFINITE);
         _timeline.play();
     }
-
 
     private void update() {
         _boatModel.move(_speedTable, _wind);

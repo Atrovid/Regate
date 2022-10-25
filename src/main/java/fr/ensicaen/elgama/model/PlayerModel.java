@@ -7,7 +7,7 @@ public class PlayerModel {
         return _nickname;
     }
 
-    public void setNickname( String nickname ) {
+    public void setNickname(String nickname) {
         _nickname = nickname;
     }
 }
