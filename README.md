@@ -24,18 +24,18 @@ Le projet a la structure suivante :
     └── src
         ├── main
         │   ├── java
-        │   │      ├── fr.ensicaen.Elgama/*.java
-        │   │      ├── fr.ensicaen.Elgama.model/*.java
-        │   │      ├── fr.ensicaen.Elgama.presenter/*.java
-        │   │      └── fr.ensicaen.Elgama.view/*.java
+        │   │      ├── fr.ensicaen.elgama/*.java
+        │   │      ├── fr.ensicaen.elgama.model/*.java
+        │   │      ├── fr.ensicaen.elgama.presenter/*.java
+        │   │      └── fr.ensicaen.elgama.view/*.java
         │   │
         │   └── resources
-        │          ├── fr.ensicaen.Elgama/view/*.fxml
-        │          ├── fr.ensicaen.Elgama/view/*.css
-        │          └── fr.ensicaen.Elgama/MessageBundle.properties.properties
+        │          ├── fr.ensicaen.elgama/view/*.fxml
+        │          ├── fr.ensicaen.elgama/view/*.css
+        │          └── fr.ensicaen.elgama/MessageBundle.properties.properties
         ├── test
             ├── java
-            │      └── fr.ensicaen.Elgama/*.java
+            │      └── fr.ensicaen.elgama/*.java
             └── resources
 
 # À vous de jouer !
