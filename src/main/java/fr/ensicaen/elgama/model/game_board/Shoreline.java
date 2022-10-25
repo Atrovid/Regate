@@ -6,20 +6,8 @@ public class Shoreline implements IBoardElement {
     private final int pos;
     private final boolean vertical;
     private final boolean superior;
-// FIXME je n'ai rien compris à vertical et superior
-    public int getPos() {
-        return pos;
-    }
-// FIXME ces accesseurs sont révélateurs d'une mauvaise conception -> les calculs dans Vue devraient être faits ici
-    public boolean isVertical() {
-        return vertical;
-    }
 
-    public boolean isSuperior() {
-        return superior;
-    }
-
-    public Shoreline(int position, char direction){
+    public Shoreline(int position, char direction) {
         pos = position;
         switch (direction) {
             case 'n' -> {
@@ -41,22 +29,36 @@ public class Shoreline implements IBoardElement {
         }
     }
 
-    @Override
-    public boolean isColliding(Point2D from, Point2D to) {
-        return(isPointColling(from) || isPointColling(to));
+    // FIXME je n'ai rien compris à vertical et superior
+    public int getPos() {
+        return pos;
     }
 
-    public boolean isPointColling(Point2D p){
-        if(vertical){
-            if(superior){
+    // FIXME ces accesseurs sont révélateurs d'une mauvaise conception -> les calculs dans Vue devraient être faits ici
+    public boolean isVertical() {
+        return vertical;
+    }
+
+    public boolean isSuperior() {
+        return superior;
+    }
+
+    @Override
+    public boolean isColliding(Point2D from, Point2D to) {
+        return (isPointColling(from) || isPointColling(to));
+    }
+
+    public boolean isPointColling(Point2D p) {
+        if (vertical) {
+            if (superior) {
                 return p.getX() > pos; // East
-            }else{
+            } else {
                 return p.getX() < pos; // West
             }
-        }else{
-            if(superior){
+        } else {
+            if (superior) {
                 return p.getY() > pos; // South
-            }else{
+            } else {
                 return p.getY() < pos; // North
             }
         }
