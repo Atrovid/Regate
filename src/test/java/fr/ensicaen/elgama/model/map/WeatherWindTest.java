@@ -4,11 +4,14 @@ import fr.ensicaen.elgama.model.game_board.WeatherWind;
 import fr.ensicaen.elgama.model.game_board.WeatherWindRequestFailureException;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.awt.geom.Point2D;
 
 public class WeatherWindTest {
+
+    //TODO : faire des tests sans utiliser le serveur
 
     @Test
     void getWindForceTest() {
@@ -25,7 +28,7 @@ public class WeatherWindTest {
 
     @Test
     void getWindDirectionTest() {
-        Point2D gps = new Point2D.Double(9.283,-0.25);
+        Point2D gps = new Point2D.Double(49.283,-0.25);
         WeatherWind wind;
         try {
             wind = new WeatherWind(gps);

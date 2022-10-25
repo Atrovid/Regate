@@ -64,6 +64,7 @@ public class WeatherWind implements IWind {
     private String fetchWeatherData() throws IOException {
         String URL_TEMPLATE = "https://www.prevision-meteo.ch/services/json/lat=%flng=%f";
         String urlString = String.format(URL_TEMPLATE, _GPSCoords.getX(), _GPSCoords.getY());
+        urlString = urlString.replace(',','.'); //sinon l'url est faux
         URL url = new URL(urlString);
         InputStream inputStream = url.openStream();
         BufferedReader rd = new BufferedReader(new InputStreamReader(inputStream, StandardCharsets.UTF_8));
