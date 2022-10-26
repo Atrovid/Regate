@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class RandomWind implements IWind {
+public class RandomWind extends Wind {
 
     final private float _strength;
 
@@ -22,8 +22,13 @@ public class RandomWind implements IWind {
     }
 
     @Override
-    public Point2D getWindDirection() {
+    public Point2D getWindDirectionPoint2D() {
         return _direction;
+    }
+
+    @Override
+    public double getWindDirectionDouble() {
+        return Wind.windDirectionAngle(_direction);
     }
 
     public Point2D createWindDirection() {

@@ -3,12 +3,12 @@ package fr.ensicaen.elgama.model.game_board;
 import java.awt.geom.Point2D;
 
 public class Board {
-    private final IWind _wind;
+    private final Wind _wind;
     private final Shoreline _shore;
     private final Buoy[] _buoyList;
     private final CheckPoint[] _checkPointList;
 
-    public Board(IWind wind, Shoreline shore, Buoy[] buoyList, CheckPoint[] checkPointList) {
+    public Board(Wind wind, Shoreline shore, Buoy[] buoyList, CheckPoint[] checkPointList) {
         _wind = wind;
         _shore = shore;
         _buoyList = buoyList;
@@ -16,10 +16,10 @@ public class Board {
     }
 
     public Point2D getWindDirection() {
-        return _wind.getWindDirection();
+        return _wind.getWindDirectionPoint2D();
     }
 
-    public float getWindForce() { return _wind.getWindStrength(); }
+    public float getWindStrength() { return _wind.getWindStrength(); }
 
     public Object accept(IBoardElementVisitor visitor, Object o) {
         Object result = _shore.accept(visitor, o);

@@ -2,7 +2,11 @@ package fr.ensicaen.elgama.presenter;
 
 import fr.ensicaen.elgama.model.BoatModel;
 import fr.ensicaen.elgama.model.PlayerModel;
-import fr.ensicaen.elgama.model.game_board.*;
+import fr.ensicaen.elgama.model.game_board.Board;
+import fr.ensicaen.elgama.model.game_board.Buoy;
+import fr.ensicaen.elgama.model.game_board.CheckPoint;
+import fr.ensicaen.elgama.model.game_board.RandomWind;
+import fr.ensicaen.elgama.model.game_board.Shoreline;
 import fr.ensicaen.elgama.model.sailboat.PolarReader;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
@@ -14,7 +18,7 @@ import java.util.ArrayList;
 public class GamePresenter {
     private final PlayerModel _playerModel;
     private final PolarReader _speedTable;
-    private final IWind _wind;
+    private final Wind _wind;
     private BoatModel _boatModel;
     private IGameView _gameView;
     private boolean _started = false;
@@ -35,7 +39,6 @@ public class GamePresenter {
         Buoy[] buoyList = {new Buoy(new Point2D.Double(500, 100), 20)};
         CheckPoint[] cpList = {};
         _gameView.drawWaterBody(new Board(new RandomWind(), new Shoreline(100, 'w'), buoyList, cpList));
-        _gameView.setWind(_wind.getWindDirection());
         try {
             ArrayList<Point2D> points = new ArrayList<>();
             points.add(new Point2D.Double(10, 10));
@@ -46,7 +49,7 @@ public class GamePresenter {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        _gameView.setWind(_windDir);
+        _gameView.setWind(_wind.getWindDirectionDouble(), _wind.getWindStrength());
     }
 
     public void handleUserAction(UserAction code) {
