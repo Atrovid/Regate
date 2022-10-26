@@ -24,6 +24,9 @@ import java.io.IOException;
 public class GameView implements IGameView {
     private static Stage _stage;
     public Text _strength;
+    public Text _minutes;
+    public Text _seconds;
+    public Text _milliseconds;
     private GamePresenter _gamePresenter;
     private Ellipse _boat;
     @FXML
@@ -59,6 +62,12 @@ public class GameView implements IGameView {
     public void updateBoat(double dx, double dy, double angle ) {
         rotateBoat(_boat, angle);
         move(_boat, dx, dy);
+    }
+
+    public void updateTimer(String minutes, String seconds, String milliseconds ) {
+        _minutes.setText(minutes);
+        _seconds.setText(seconds);
+        _milliseconds.setText(milliseconds);
     }
 
     @Override
