@@ -15,6 +15,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Ellipse;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.awt.geom.Point2D;
@@ -22,6 +23,7 @@ import java.io.IOException;
 
 public class GameView implements IGameView {
     private static Stage _stage;
+    public Text _strength;
     private GamePresenter _gamePresenter;
     private Ellipse _boat;
     @FXML
@@ -62,6 +64,7 @@ public class GameView implements IGameView {
     @Override
     public void setWind(double windDirection, float strength) {
         _windImage.setRotate(windDirection);
+        _strength.setText(String.valueOf(strength));
     }
 
     public void show() {
