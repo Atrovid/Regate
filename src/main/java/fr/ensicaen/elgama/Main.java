@@ -5,12 +5,17 @@ import fr.ensicaen.elgama.view.StartView;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 public final class Main extends Application {
 
     public static void main(String[] args) {
         launch(args);
+    }
+
+    public static void changeLanguage(String lang, String country){
+        Locale.setDefault(new Locale(lang, country));
     }
 
     public static ResourceBundle getMessageBundle() {
