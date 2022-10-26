@@ -1,18 +1,14 @@
 package fr.ensicaen.elgama.model.game_board;
 
 import java.awt.geom.Point2D;
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
 
 import java.lang.NumberFormatException;
-import java.io.InputStreamReader;
-import java.net.URL;
-import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
 
-public class WeatherWind implements IWind {
+
+public class WeatherWind extends Wind {
     final private float _speed;
     final private Point2D _direction;
     final private IWeatherDB _proxy;
@@ -62,12 +58,17 @@ public class WeatherWind implements IWind {
     }
 
     @Override
-    public float getWindForce() {
+    public float getWindStrength() {
         return _speed;
     }
 
     @Override
-    public Point2D getWindDirection() {
+    public Point2D getWindDirectionPoint2D() {
         return _direction;
+    }
+
+    @Override
+    public double getWindDirectionDouble() {
+        return Wind.windDirectionAngle(_direction);
     }
 }

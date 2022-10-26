@@ -22,7 +22,7 @@ public class WeatherWindTest {
         } catch (Exception ignored) {
             return;
         }
-        Point2D windDirection = wind.getWindDirection();
+        Point2D windDirection = wind.getWindDirectionPoint2D();
         Point2D expectedWindDirection = new Point2D.Float(0,1);
         assertEquals(expectedWindDirection.getX(),windDirection.getX());
         assertEquals(expectedWindDirection.getY(),windDirection.getY());
@@ -39,7 +39,7 @@ public class WeatherWindTest {
         } catch (Exception ignored) {
             return;
         }
-        float windForce = wind.getWindForce();
+        float windForce = wind.getWindStrength();
         assertTrue(windForce == 30);
     }
 }
