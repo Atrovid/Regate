@@ -13,15 +13,15 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class WeatherWind implements IWind {
-    final private Point2D _GPSCoords;
     final private float _speed;
     final private Point2D _direction;
+    final private IWeatherDB _proxy;
 
-    public WeatherWind(Point2D GPSCoordinates) throws WeatherWindRequestFailureException {
-        _GPSCoords = GPSCoordinates;
+    public WeatherWind(IWeatherDB proxy) throws WeatherWindRequestFailureException {
+        _proxy = proxy;
         String data;
         try {
-            data = fetchWeatherData();
+            data = proxy.requestData();
         } catch (IOException e) {
             throw new WeatherWindRequestFailureException(e.getMessage());
         }
@@ -59,21 +59,6 @@ public class WeatherWind implements IWind {
         int indexStart = data.indexOf(fieldName);
         int indexEnd = data.indexOf(',', indexStart);
         return data.substring(indexStart + fieldName.length(), indexEnd);
-    }
-
-    private String fetchWeatherData() throws IOException {
-        String URL_TEMPLATE = "https://www.prevision-meteo.ch/services/json/lat=%flng=%f";
-        String urlString = String.format(URL_TEMPLATE, _GPSCoords.getX(), _GPSCoords.getY());
-        urlString = urlString.replace(',','.'); //sinon l'url est faux
-        URL url = new URL(urlString);
-        InputStream inputStream = url.openStream();
-        BufferedReader rd = new BufferedReader(new InputStreamReader(inputStream, StandardCharsets.UTF_8));
-        StringBuilder sBuilder = new StringBuilder();
-        int cp;
-        while ((cp = rd.read()) != -1) {
-            sBuilder.append((char)cp);
-        }
-        return sBuilder.toString();
     }
 
     @Override
