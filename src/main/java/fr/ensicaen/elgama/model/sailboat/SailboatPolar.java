@@ -1,7 +1,7 @@
 package fr.ensicaen.elgama.model.sailboat;
 
 public class SailboatPolar {
-    private PolarReader polarReader;
+    private final PolarReader polarReader;
 
     public SailboatPolar( PolarReader.PolarType polarType) {
         polarReader = new PolarReader( polarType );

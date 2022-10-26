@@ -12,6 +12,9 @@ public class SailboatPolarTest {
     @Test
     void giveGoodMaxSpeed() {
         SailboatPolar sailboatPolar = new SailboatPolar( _polarType );
-        assertEquals( 6.60, sailboatPolar.getMaxSpeed( 60, 16) );
+        assertEquals( 7.80, sailboatPolar.getMaxSpeed( 60, 16) );
+        assertEquals( 1.0, sailboatPolar.getMaxSpeed( 175, 3) );
+        assertEquals( 9.0, sailboatPolar.getMaxSpeed( 175, 40 ) );
+
     }
 }
