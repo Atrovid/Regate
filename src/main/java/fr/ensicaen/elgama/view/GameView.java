@@ -60,10 +60,8 @@ public class GameView implements IGameView {
     }
 
     @Override
-    public void setWind(Point2D direction) {
-        javafx.geometry.Point2D imageDirection = new javafx.geometry.Point2D(-1,1);
-        javafx.geometry.Point2D newWindDirection = new javafx.geometry.Point2D(direction.getX(),direction.getY());
-        _windImage.setRotate(-imageDirection.angle(newWindDirection));
+    public void setWind(double windDirection, float strength) {
+        _windImage.setRotate(windDirection);
     }
 
     public void show() {
@@ -86,7 +84,6 @@ public class GameView implements IGameView {
 
     public static class GameViewFactory {
         private GameViewFactory() {
-            // Factory class as Utility class where the constructor is private
         }
 
         public static GameView createView() throws IOException {

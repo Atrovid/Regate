@@ -46,8 +46,6 @@ public class LoginView implements ILoginView {
 
     public static class LoginViewFactory {
         private LoginViewFactory() {
-            // Factory class as Utility class where the constructor is private
-            // FIXME supprimer ce commentaire devenu inutile. Il n'avait qu'un vertue pédagogique
         }
 
         public static LoginView createView() throws IOException {
