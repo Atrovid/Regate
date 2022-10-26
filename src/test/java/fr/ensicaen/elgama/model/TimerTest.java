@@ -3,30 +3,25 @@ package fr.ensicaen.elgama.model;
 import fr.ensicaen.elgama.model.game_board.Timer;
 import org.junit.jupiter.api.Test;
 
-import java.util.concurrent.TimeUnit;
-
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class TimerTest {
     @Test
-    void updateTest() throws InterruptedException {
+    void updateTest() {
         Timer t = new Timer();
         t.updateTimer();
-        int milliInit = t.getTMilliNow();
-        TimeUnit.SECONDS.sleep(10);
-        t.updateTimer();
-        assertTrue((t.getTMilliNow()!=milliInit));
+        assertTrue((t.getMilliSecond()<1000));
+        assertTrue((t.getSecond()<60));
     }
     @Test
-    void resumeTest() throws InterruptedException {
+    void resetTest() {
         Timer t = new Timer();
-
-        TimeUnit.SECONDS.sleep(10);
         t.updateTimer();
-        int sec2 = t.getTSecNow();
-        t.resume();
-        t.updateTimer();
-        assertTrue((sec2 != t.getTSecNow()));
+        t.reset();
+        assertEquals(0, t.getSecond());
+        assertTrue((t.getMilliSecond()==0));
+        assertTrue((t.getMinute()==0));
     }
 
 }
