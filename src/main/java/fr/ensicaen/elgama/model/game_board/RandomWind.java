@@ -1,6 +1,7 @@
 package fr.ensicaen.elgama.model.game_board;
 
 import java.awt.geom.Point2D;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -12,7 +13,7 @@ public class RandomWind extends Wind {
     final private Point2D _direction;
 
     public RandomWind() {
-        this._strength = (float) (16.0 * Math.random());
+        this._strength = (float) Math.round((16.0 * Math.random()) * 100) / 100;
         this._direction = createWindDirection();
     }
 
