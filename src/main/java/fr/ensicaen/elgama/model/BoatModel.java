@@ -51,7 +51,7 @@ public class BoatModel {
     }
 
     public double getBoatSpeed(PolarReader speedTable, IWind wind) {
-
+        int strengthIndex = strengthRound
 //        java.awt.geom.Point2D windDir = wind.getWindDirection();
 //        Point2D boatDir = angleToVector(_anglePositive);
 //        angle = boatDir.angle(windDir.getX(), windDir.getY());
