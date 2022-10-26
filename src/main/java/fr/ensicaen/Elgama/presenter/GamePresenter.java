@@ -18,6 +18,7 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.util.Duration;
 import java.awt.geom.Point2D;
+import java.util.ArrayList;
 
 public class GamePresenter {
     private final PlayerModel _playerModel;
@@ -45,7 +46,16 @@ public class GamePresenter {
 
         Buoy[] buoyList = {new Buoy(new Point2D.Double(500,100), 20)};
         CheckPoint[] cpList = {};
-        _gameView.drawWaterBody(new Board(new RandomWind(), new Shoreline(100, 'w'), buoyList, cpList ));
+        try {
+            ArrayList<Point2D> points = new ArrayList<>();
+            points.add(new Point2D.Double(10, 10));
+            points.add(new Point2D.Double(100, 10));
+            points.add(new Point2D.Double(100, 100));
+            points.add(new Point2D.Double(10, 100));
+            _gameView.drawWaterBody(new Board(new RandomWind(), new Shoreline(points), buoyList, cpList ));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         _gameView.setWind(_windDir);
     }
 

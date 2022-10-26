@@ -1,65 +1,48 @@
 package fr.ensicaen.Elgama.model.game_board;
 
+import java.awt.geom.Line2D;
 import java.awt.geom.Point2D;
+import java.util.ArrayList;
 
 public class Shoreline implements IBoardElement {
-    private final int pos;
-    private final boolean vertical;
-    private final boolean superior;
+    private final ArrayList<Point2D> _points;
+    private final ArrayList<Line2D> _lines = new ArrayList<>();
 
-    public int getPos() {
-        return pos;
-    }
-
-    public boolean isVertical() {
-        return vertical;
-    }
-
-    public boolean isSuperior() {
-        return superior;
-    }
-
-    public Shoreline(int position, char direction){
-        pos = position;
-        switch (direction) {
-            case 'n' -> {
-                vertical = false;
-                superior = false;
-            }
-            case 's' -> {
-                vertical = false;
-                superior = true;
-            }
-            case 'e' -> {
-                vertical = true;
-                superior = true;
-            }
-            default -> { // 'w'
-                vertical = true;
-                superior = false;
-            }
+    public Shoreline(ArrayList<Point2D> points) throws Exception {
+        if(points.size() < 3){
+            throw new Exception("A shoreline must have at least three vertices.");
         }
+        _points = new ArrayList<>(points);
+        for(int i = 0 ; i < points.size() - 1 ; i++){
+            _lines.add(new Line2D.Double(_points.get(i), _points.get(i+1)));
+        }
+        _lines.add(new Line2D.Double(_points.get(0), _points.get(_points.size()-1)));
     }
 
     @Override
     public boolean isColliding(Point2D from, Point2D to) {
-        return(isPointColling(from) || isPointColling(to));
-    }
-
-    public boolean isPointColling(Point2D p){
-        if(vertical){
-            if(superior){
-                return p.getX() > pos; // East
-            }else{
-                return p.getX() < pos; // West
-            }
-        }else{
-            if(superior){
-                return p.getY() > pos; // South
-            }else{
-                return p.getY() < pos; // North
+        Line2D trajectory = new Line2D.Double(from, to);
+        for (Line2D line : _lines) {
+            if (isCrossingLine(trajectory, line)) {
+                return true;
             }
         }
+        return false;
+    }
+
+    public boolean isCrossingLine(Line2D trajectory, Line2D line){
+        return trajectory.intersectsLine(line);
+    }
+
+    public double[] getPointsAsDoubleArray(){
+        double[] array = new double[2 * _points.size()];
+
+        for(int i = 0 ; i < _points.size() ; i++){
+            array[2 * i] = _points.get(i).getX();
+            array[2 * i + 1] = _points.get(i).getY();
+        }
+
+        return array;
     }
 
     @Override
