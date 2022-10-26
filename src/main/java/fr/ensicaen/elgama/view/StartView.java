@@ -36,7 +36,6 @@ public class StartView implements IStartView {
 
     public static class StartViewFactory {
         private StartViewFactory() {
-            // Factory class as Utility class where the constructor is private
         }
 
         public static StartView createView(Stage primaryStage) throws IOException {

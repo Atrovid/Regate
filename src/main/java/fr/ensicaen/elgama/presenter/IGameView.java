@@ -11,5 +11,5 @@ public interface IGameView {
 
     void updateBoat(double dx, double dy, double angle);
 
-    void setWind(Point2D direction);
+    void setWind(double direction, float strength);
 }
