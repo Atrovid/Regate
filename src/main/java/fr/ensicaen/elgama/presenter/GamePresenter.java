@@ -59,6 +59,7 @@ public class GamePresenter {
     private void startGame() {
         if (!_started) {
             _started = true;
+            _timer = new Timer();
             runGameLoop();
         }
     }
@@ -73,7 +74,6 @@ public class GamePresenter {
 
     private void initGame() {
         _boatModel = new BoatModel();
-        _timer = new Timer();
     }
 
 
