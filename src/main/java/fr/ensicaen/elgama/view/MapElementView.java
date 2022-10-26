@@ -8,7 +8,7 @@ import fr.ensicaen.elgama.model.game_board.Shoreline;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Ellipse;
-import javafx.scene.shape.Rectangle;
+import javafx.scene.shape.Polygon;
 
 public class MapElementView implements IBoardElementVisitor {
     private final AnchorPane _base;
@@ -26,34 +26,10 @@ public class MapElementView implements IBoardElementVisitor {
     }
 
     @Override
-    public Object visit(Shoreline sl, Object o) { //Replace 5000 by else (FIXME c'est quoi ce message en commentaire ?)
-        // FIXME : il ne faut mettre aucune logique dans une vue.
-        Rectangle rect = new Rectangle();
-        if (sl.isVertical()){
-            rect.setY(0.0);
-            if(sl.isSuperior()){//East (FIXME ce commentaire rend compte d'un manque de proprété du code -> refondre ce code).
-                rect.setX(sl.getPos());
-                rect.setWidth(5000);
-                rect.setHeight(5000);
-            }else{//West
-                rect.setX(0.0);
-                rect.setWidth(sl.getPos());
-                rect.setHeight(5000);
-            }
-        }else{
-            rect.setX(0.0);
-            if(sl.isSuperior()){//South
-                rect.setY(sl.getPos());
-                rect.setHeight(5000);
-                rect.setWidth(5000);
-            }else{//North
-                rect.setY(0.0);
-                rect.setHeight(sl.getPos());
-                rect.setWidth(5000);
-            }
-        }
-        rect.setFill(Color.YELLOW);
-        _base.getChildren().add(rect);
+    public Object visit(Shoreline sl, Object o) { //Replace 5000 by else
+        Polygon polygon = new Polygon(sl.getPointsAsDoubleArray());
+        polygon.setFill(Color.YELLOW);
+        _base.getChildren().add(polygon);
         return null;
     }
 
