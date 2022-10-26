@@ -2,13 +2,23 @@ package fr.ensicaen.elgama.model.sailboat;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.Locale;
 import java.util.Scanner;
 
 public class PolarReader {
     private final String _file;
 
-    public PolarReader() {
-        _file = "data/polaire-figaro.pol";
+    public enum PolarType {
+        Figaro("data/polaire-figaro.pol"),
+        Oceanis( "data/polaire-oceanis.pol");
+        String fileName;
+        PolarType( String fileName) {
+            this.fileName = fileName;
+        }
+        }
+
+    public PolarReader(PolarType polarType) {
+        _file = polarType.fileName;
     }
 
     public double[][] loadData() {

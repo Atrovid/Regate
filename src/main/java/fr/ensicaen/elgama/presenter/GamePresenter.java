@@ -12,7 +12,6 @@ import java.awt.geom.Point2D;
 
 public class GamePresenter {
     private final PlayerModel _playerModel;
-    private final PolarReader _speedTable;
     private final IWind _wind;
     private BoatModel _boatModel;
     private IGameView _gameView;
@@ -23,7 +22,6 @@ public class GamePresenter {
         _playerModel = new PlayerModel();
         _playerModel.setNickname(nickName);
         _wind = new RandomWind();
-        _speedTable = new PolarReader();
         initGame();
     }
 
@@ -75,7 +73,7 @@ public class GamePresenter {
     }
 
     private void update() {
-        _boatModel.move(_speedTable, _wind);
+//        _boatModel.move(_speedTable, _wind);
     }
 
     private void render() {

@@ -51,24 +51,12 @@ public class BoatModel {
     }
 
     public double getBoatSpeed(PolarReader speedTable, IWind wind) {
-        float strength = wind.getWindForce();
-        int strengthRounded;
-        if (strength > 30) {
-            strengthRounded = 30;
-        } else if (strength < 4) {
-            strengthRounded = 4;
-        } else {
-            strengthRounded = Math.round(strength / 2) * 2;
-        }
-        int strengthIndex = strengthRounded / 2 - 2;
 
-        java.awt.geom.Point2D windDir = wind.getWindDirection();
-        Point2D boatDir = angleToVector(_anglePositive);
-        double diffAngle = 180 - boatDir.angle(windDir.getX(), windDir.getY());
-        int angleRounded = (int) Math.round(diffAngle / 10) * 10;
-        int angleIndex = angleRounded / 10;
+//        java.awt.geom.Point2D windDir = wind.getWindDirection();
+//        Point2D boatDir = angleToVector(_anglePositive);
+//        angle = boatDir.angle(windDir.getX(), windDir.getY());
+//        double diffAngle = 180 - angle;
 
-        double[][] data = speedTable.loadData();
-        return data[angleIndex][strengthIndex];
+        return 8.0;
     }
 }
