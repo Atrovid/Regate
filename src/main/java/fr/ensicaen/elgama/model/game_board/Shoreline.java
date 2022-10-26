@@ -8,10 +8,7 @@ public class Shoreline implements IBoardElement {
     private final ArrayList<Point2D> _points;
     private final ArrayList<Line2D> _lines = new ArrayList<>();
 
-    public Shoreline(ArrayList<Point2D> points) throws Exception {
-        if(points.size() < 3){
-            throw new Exception("A shoreline must have at least three vertices.");
-        }
+    public Shoreline(ArrayList<Point2D> points) {
         _points = new ArrayList<>(points);
         for(int i = 0 ; i < points.size() - 1 ; i++){
             _lines.add(new Line2D.Double(_points.get(i), _points.get(i+1)));

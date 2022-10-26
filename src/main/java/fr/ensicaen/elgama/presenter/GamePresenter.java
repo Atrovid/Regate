@@ -7,6 +7,7 @@ import fr.ensicaen.elgama.model.game_board.Buoy;
 import fr.ensicaen.elgama.model.game_board.CheckPoint;
 import fr.ensicaen.elgama.model.game_board.RandomWind;
 import fr.ensicaen.elgama.model.game_board.Shoreline;
+import fr.ensicaen.elgama.model.game_board.Wind;
 import fr.ensicaen.elgama.model.sailboat.PolarReader;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
@@ -38,17 +39,16 @@ public class GamePresenter {
 
         Buoy[] buoyList = {new Buoy(new Point2D.Double(500, 100), 20)};
         CheckPoint[] cpList = {};
-        _gameView.drawWaterBody(new Board(new RandomWind(), new Shoreline(100, 'w'), buoyList, cpList));
-        try {
-            ArrayList<Point2D> points = new ArrayList<>();
-            points.add(new Point2D.Double(10, 10));
-            points.add(new Point2D.Double(100, 10));
-            points.add(new Point2D.Double(100, 100));
-            points.add(new Point2D.Double(10, 100));
-            _gameView.drawWaterBody(new Board(new RandomWind(), new Shoreline(points), buoyList, cpList ));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        ArrayList<Point2D> points = new ArrayList<>();
+        points.add(new Point2D.Double(0, 0));
+        points.add(new Point2D.Double(200, 0));
+        points.add(new Point2D.Double(200, 100));
+        points.add(new Point2D.Double(100, 100));
+        points.add(new Point2D.Double(100, 200));
+        points.add(new Point2D.Double(100, 400));
+        points.add(new Point2D.Double(250, 600));
+        points.add(new Point2D.Double(0, 600));
+        _gameView.drawWaterBody(new Board(new RandomWind(), new Shoreline(points), buoyList, cpList ));
         _gameView.setWind(_wind.getWindDirectionDouble(), _wind.getWindStrength());
     }
 
