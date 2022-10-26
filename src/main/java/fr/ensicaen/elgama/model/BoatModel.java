@@ -51,7 +51,7 @@ public class BoatModel {
     }
 
     public double getBoatSpeed(PolarReader speedTable, IWind wind) {
-        float strength = wind.getWindForce();
+        float strength = wind.getWindStrength();
         int strengthRounded;
         if (strength > 30) {
             strengthRounded = 30;

@@ -2,35 +2,35 @@ package fr.ensicaen.elgama.model.game_board;
 
 public class Timer {
 
-    private int _tSecInit;
-    private int _tMinInit;
-    private int _tMilliInit;
-    private int _tSecNow;
-    private int _tMilliNow;
+    private int _milliSecondInit;
+    private int _milliSecondElapsed;
 
     public Timer() {
-        _tMilliInit = (int) System.currentTimeMillis();
-        _tSecInit = (_tMilliInit / 1000) % 60;
-        _tMinInit = (_tMilliInit / 1000) / 60;
+        _milliSecondInit = (int) System.currentTimeMillis();
     }
 
     public void updateTimer() {
-        _tMilliNow = (int) (System.currentTimeMillis() - _tMilliInit);
-        _tSecNow = (_tMilliNow / 1000) % 60 - _tSecInit;
-        int _tMinNow = (_tMilliNow / 1000) / 60 - _tMinInit;
+        _milliSecondElapsed = (int) (System.currentTimeMillis() - _milliSecondInit);
     }
 
-    public int getTSecNow() {
-        return _tSecNow;
+    private int getSecondElapsed() {
+        return _milliSecondElapsed /1000;
     }
 
-    public int getTMilliNow() {
-        return _tMilliNow;
+    public int getMilliSecond() {
+        return _milliSecondElapsed % 1000;
     }
 
-    public void resume() {
-        _tMilliInit = (int) System.currentTimeMillis();
-        _tSecInit = (_tMilliInit / 1000) % 60;
-        _tMinInit = (_tMilliInit / 1000) / 60;
+    public int getSecond() {
+        return getSecondElapsed() % 60;
+    }
+
+    public int getMinute() {
+        return getSecondElapsed() / 60;
+    }
+
+    public void reset() {
+        _milliSecondInit = (int) System.currentTimeMillis();
+        this.updateTimer();
     }
 }

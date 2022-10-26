@@ -13,7 +13,7 @@ public class RandomWindTest {
     @Test
     void getWindForceTest() {
         IWind wind = new RandomWind();
-        float windForce = wind.getWindForce();
+        float windForce = wind.getWindStrength();
         assertTrue((16>windForce));
     }
     @Test

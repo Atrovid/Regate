@@ -1,19 +1,23 @@
 package fr.ensicaen.elgama.model.game_board;
 
 import java.awt.geom.Point2D;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class RandomWind implements IWind {
 
-    float _strength;
-    Point2D _direction;
+    final private float _strength;
+
+    final private Point2D _direction;
 
     public RandomWind() {
-        _strength = (float) (16.0 * Math.random());
-        _direction = createWindDirection();
+        this._strength = (float) (16.0 * Math.random());
+        this._direction = createWindDirection();
     }
 
     @Override
-    public float getWindForce() {
+    public float getWindStrength() {
         return _strength;
     }
 
@@ -23,24 +27,23 @@ public class RandomWind implements IWind {
     }
 
     public Point2D createWindDirection() {
-        double x = Math.random();
-        double y = Math.random();
-        Point2D WindDirection = new Point2D.Double(randomToDirection(x),
-                randomToDirection(y));
-        return normalize(WindDirection);
+        Point2D E = new Point2D.Double(1.0,0.0);
+        Point2D NE = new Point2D.Double(1.0,1.0);
+        Point2D N = new Point2D.Double(0.0,1.0);
+        Point2D NO = new Point2D.Double(-1.0,1.0);
+        Point2D O = new Point2D.Double(-1.0,0.0);
+        Point2D SO = new Point2D.Double(-1.0,-1.0);
+        Point2D S = new Point2D.Double(0.0,-1.0);
+        Point2D SE = new Point2D.Double(1.0,-1.0);
+
+        List<Point2D> listOfPoints = new ArrayList<>();
+        Collections.addAll(listOfPoints, E, NE, N, NO, O, SO, S, SE);
+
+        int randomChoice = (int) (7 * Math.random());
+        return normalize(listOfPoints.get(randomChoice));
     }
 
-    private double randomToDirection(double rd) {
-        if (rd < 0.33) {
-            return -1;
-        } else if (rd > 0.67) {
-            return 1;
-        } else {
-            return 0;
-        }
-    }
-
-    private Point2D normalize(Point2D p) {
+    private Point2D normalize(Point2D p){
         double x = p.getX();
         double y = p.getY();
         double norm = p.distance(0, 0);
