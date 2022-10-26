@@ -37,7 +37,6 @@ public class ConfigView implements IConfigView {
 
     public static class ConfigViewFactory {
         private ConfigViewFactory() {
-            // Factory class as Utility class where the constructor is private
         }
 
         public static ConfigView createView( ) throws IOException {
@@ -45,9 +44,9 @@ public class ConfigView implements IConfigView {
             Parent root = loader.load();
             ConfigView view = loader.getController();
             Scene scene = new Scene(root, 800, 600);
-            view._stage = new Stage(); // FIXME _state est un attribut statique -> utiliser la classe pour y accéder
-            view._stage.setTitle(Main.getMessageBundle().getString("project.title"));
-            view._stage.setScene(scene);
+            _stage = new Stage();
+            _stage.setTitle(Main.getMessageBundle().getString("project.title"));
+            _stage.setScene(scene);
             return view;
         }
     }

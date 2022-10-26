@@ -13,7 +13,7 @@ import java.awt.geom.Point2D;
 public class GamePresenter {
     private final PlayerModel _playerModel;
     private final PolarReader _speedTable;
-    private final IWind _wind;
+    private final Wind _wind;
     private BoatModel _boatModel;
     private IGameView _gameView;
     private boolean _started = false;
@@ -34,7 +34,7 @@ public class GamePresenter {
         Buoy[] buoyList = {new Buoy(new Point2D.Double(500, 100), 20)};
         CheckPoint[] cpList = {};
         _gameView.drawWaterBody(new Board(new RandomWind(), new Shoreline(100, 'w'), buoyList, cpList));
-        _gameView.setWind(_wind.getWindDirection());
+        _gameView.setWind(_wind.getWindDirectionDouble(), _wind.getWindStrength());
     }
 
     public void handleUserAction(UserAction code) {
