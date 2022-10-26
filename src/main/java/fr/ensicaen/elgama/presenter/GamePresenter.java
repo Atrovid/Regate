@@ -12,7 +12,7 @@ import java.awt.geom.Point2D;
 
 public class GamePresenter {
     private final PlayerModel _playerModel;
-    private final IWind _wind;
+    private final Wind _wind;
     private BoatModel _boatModel;
     private IGameView _gameView;
     private boolean _started = false;
