@@ -1,10 +1,10 @@
 package fr.ensicaen.elgama.presenter;
 
 import fr.ensicaen.elgama.Main;
-import fr.ensicaen.elgama.model.BoatModel;
 import fr.ensicaen.elgama.model.PlayerModel;
 import fr.ensicaen.elgama.model.game_board.*;
 import fr.ensicaen.elgama.model.sailboat.PolarReader;
+import fr.ensicaen.elgama.model.sailboat.Sailboat;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -16,19 +16,18 @@ import java.util.ArrayList;
 import java.util.Optional;
 
 public class GamePresenter {
-    private final PlayerModel _playerModel;
-    private final PolarReader _speedTable;
+    private final PlayerModel _playerModel; // TODO remove player model
     private final Wind _wind;
-    private BoatModel _boatModel;
+    private final Sailboat _sailboat;
     private IGameView _gameView;
     private boolean _started = false;
-    private Timeline _timeline;
+    private final Board _board;
     private Timer _timer;
 
     public GamePresenter(String nickName) {
-        Wind wind1;
         _playerModel = new PlayerModel();
         _playerModel.setNickname(nickName);
+        Wind wind1;
         try {
             WeatherProxy proxy = new WeatherProxy(new Point2D.Double(49.283,-0.25));
             wind1 = new WeatherWind(proxy);
@@ -36,16 +35,6 @@ public class GamePresenter {
             wind1 = new RandomWind();
         }
         _wind = wind1;
-        _speedTable = new PolarReader();
-        initGame();
-    }
-
-    public void setGameView(IGameView gameView) {
-        _gameView = gameView;
-        _gameView.addBoat(_boatModel.getX(), _boatModel.getY());
-
-        Buoy[] buoyList = {new Buoy(new Point2D.Double(500, 100), 20)};
-        CheckPoint[] cpList = {};
         ArrayList<Point2D> points = new ArrayList<>();
         points.add(new Point2D.Double(0, 0));
         points.add(new Point2D.Double(200, 0));
@@ -55,7 +44,17 @@ public class GamePresenter {
         points.add(new Point2D.Double(100, 400));
         points.add(new Point2D.Double(250, 600));
         points.add(new Point2D.Double(0, 600));
-        _gameView.drawWaterBody(new Board(new RandomWind(), new Shoreline(points), buoyList, cpList ));
+        Buoy[] buoyList = {new Buoy(new Point2D.Double(500, 100), 20)};
+        CheckPoint[] cpList = {};
+        _board = new Board(new RandomWind(), new Shoreline(points), buoyList, cpList);
+        _sailboat = new Sailboat(_board, PolarReader.PolarType.Figaro);
+    }
+
+    public void setGameView(IGameView gameView) {
+        _gameView = gameView;
+        _gameView.addBoat(_sailboat.getPosition().getX(), _sailboat.getPosition().getY());
+
+        _gameView.drawWaterBody(_board);
         _gameView.setWind(_wind.getWindDirectionDouble(), _wind.getWindStrength());
     }
 
@@ -77,33 +76,30 @@ public class GamePresenter {
 
     private void changeDirection(UserAction action) {
         if (action == UserAction.LEFT) {
-            _boatModel.rotate(-2);
+            _sailboat.changeDirection(-2 * Math.PI / 180);
         } else if (action == UserAction.RIGHT) {
-            _boatModel.rotate(+2);
+            _sailboat.changeDirection(2 * Math.PI / 180);
         }
-    }
-
-    private void initGame() {
-        _boatModel = new BoatModel();
     }
 
 
     private void runGameLoop() {
-        _timeline = new Timeline(new KeyFrame(Duration.millis(50), onFinished -> {
+        Timeline timeline = new Timeline(new KeyFrame(Duration.millis(50), onFinished -> {
             update();
             render();
         }));
-        _timeline.setCycleCount(Animation.INDEFINITE);
-        _timeline.play();
+        timeline.setCycleCount(Animation.INDEFINITE);
+        timeline.play();
     }
 
     private void update() {
-        _boatModel.move(_speedTable, _wind);
+        _sailboat.move();
         _timer.updateTimer();
     }
 
+    //TODO don't forget to delete the angle (refactor)
     private void render() {
-        _gameView.updateBoat(_boatModel.getDx(), _boatModel.getDy(), _boatModel.getAngle());
+        _gameView.updateBoat( _sailboat.getSpeed().getX(), _sailboat.getSpeed().getY(), _sailboat.getAngle());
         _gameView.updateTimer(String.format("%02d",_timer.getMinute()),String.format("%02d",_timer.getSecond()),String.format("%03d",_timer.getMilliSecond()));
     }
 
