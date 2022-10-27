@@ -22,9 +22,16 @@ public class GamePresenter {
     private Timer _timer;
 
     public GamePresenter(String nickName) {
+        Wind wind1;
         _playerModel = new PlayerModel();
         _playerModel.setNickname(nickName);
-        _wind = new RandomWind();
+        try {
+            WeatherProxy proxy = new WeatherProxy(new Point2D.Double(49.283,-0.25));
+            wind1 = new WeatherWind(proxy);
+        } catch (Exception e) {
+            wind1 = new RandomWind();
+        }
+        _wind = wind1;
         _speedTable = new PolarReader();
         initGame();
     }
