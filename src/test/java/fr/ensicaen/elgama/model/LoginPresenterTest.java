@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
@@ -41,6 +42,6 @@ class LoginPresenterTest {
         presenter.launchGame("");
 
         // then
-        verify(_view, times(1)).displayError(Main.getMessageBundle().getString("error.nickname"));
+        verify(_view, times(1)).displayError(anyString());
     }
 }

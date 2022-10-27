@@ -45,8 +45,7 @@ public class LoginView implements ILoginView {
     }
 
     public static class LoginViewFactory {
-        private LoginViewFactory() {
-        }
+        private LoginViewFactory() {}
 
         public static LoginView createView() throws IOException {
             FXMLLoader loader = new FXMLLoader(LoginView.class.getResource("LoginDialog.fxml"), Main.getMessageBundle());
