@@ -13,8 +13,8 @@ public class RandomWind extends Wind {
     final private Point2D _direction;
 
     public RandomWind() {
-        this._strength = (float) Math.round((16.0 * Math.random()) * 100) / 100;
-        this._direction = createWindDirection();
+        _strength = (float) Math.round((16.0 * Math.random()) * 100) / 100;
+        _direction = createWindDirection();
     }
 
     @Override
