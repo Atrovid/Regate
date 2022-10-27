@@ -13,4 +13,6 @@ public interface IGameView {
     void updateTimer(String minutes, String seconds, String milliseconds);
 
     void setWind(double direction, float strength);
+
+    void close();
 }
