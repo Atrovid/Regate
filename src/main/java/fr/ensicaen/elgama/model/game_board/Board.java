@@ -15,6 +15,14 @@ public class Board {
         _checkPointList = checkPointList;
     }
 
+    public Point2D getStartingPosition(){
+        return new Point2D.Double(580,480);
+    }
+
+    public Point2D getBoardSize(){
+        return new Point2D.Double(800,600);
+    }
+
     public Point2D getWindDirection() {
         return _wind.getWindDirectionPoint2D();
     }
@@ -30,5 +38,10 @@ public class Board {
             result = cp.accept(visitor, result);
         }
         return result;
+    }
+
+    public boolean isMovePossible(Point2D oldP, Point2D newP){
+        //TODO Basil à toi de jouer !!!
+        return true;
     }
 }
