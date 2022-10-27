@@ -93,7 +93,6 @@ public class GamePresenter {
     }
 
     private void update() {
-        //TODO check is possible
         _sailboat.move();
         _timer.updateTimer();
     }

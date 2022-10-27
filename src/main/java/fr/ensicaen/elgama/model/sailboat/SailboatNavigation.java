@@ -22,22 +22,18 @@ public class SailboatNavigation {
     public Point2D getSpeed() {return _speed;}
 
     public double getAngle() {
-        javafx.geometry.Point2D initialDirection = new javafx.geometry.Point2D(0,-1);
+        Point2D initialDirection = new Point2D(0,-1);
         double sign = Math.signum(_direction.crossProduct(initialDirection).getZ());
         double angle = -Math.copySign(initialDirection.angle(_direction),sign);
         return (angle + 360) % 360;
     }
 
     public void changeDirection( double angleOffset ) {
-
-//        _direction = new Point2D(Math.sin(angle * Math.PI / 180) , -Math.cos(angle * Math.PI / 180));
         _direction = new Point2D(
                     _direction.getX() * Math.cos( angleOffset ) - _direction.getY() * Math.sin( angleOffset ),
                     _direction.getX() * Math.sin( angleOffset ) + _direction.getY() * Math.cos( angleOffset )
                     );
     }
-
-
 
     public void moveForward() {
         Point2D windDir = _board.getWindDirection();
@@ -49,6 +45,11 @@ public class SailboatNavigation {
                         _board.getWindStrength()
                 )
         );
-        _position = _position.add( _speed );
+        Point2D futurePos = _position.add( _speed );
+        if (_board.isMovePossible(_position, futurePos)) {
+            _position = futurePos;
+        } else {
+            _speed = _speed.multiply(0);
+        }
     }
 }

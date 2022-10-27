@@ -40,7 +40,6 @@ public class Buoy implements IBoardElement {
     }
 
     public boolean isPointColliding(Point2D point) {
-        System.out.println(point.distance(_pos));
         return (point.distance(_pos) <= _radius);
     }
 
