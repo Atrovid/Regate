@@ -3,6 +3,7 @@ package fr.ensicaen.elgama.view;
 import fr.ensicaen.elgama.model.game_board.Board; // FIXME HORREUR couplage entre la vue et le modèle
 import fr.ensicaen.elgama.presenter.GamePresenter;
 import fr.ensicaen.elgama.presenter.IGameView;
+import fr.ensicaen.elgama.presenter.MapElementView;
 import fr.ensicaen.elgama.presenter.UserAction;
 import fr.ensicaen.elgama.Main;
 import javafx.fxml.FXML;
@@ -15,6 +16,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Ellipse;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.awt.geom.Point2D;
@@ -22,6 +24,10 @@ import java.io.IOException;
 
 public class GameView implements IGameView {
     private static Stage _stage;
+    public Text _strength;
+    public Text _minutes;
+    public Text _seconds;
+    public Text _milliseconds;
     private GamePresenter _gamePresenter;
     private Ellipse _boat;
     @FXML
@@ -59,9 +65,16 @@ public class GameView implements IGameView {
         move(_boat, dx, dy);
     }
 
+    public void updateTimer(String minutes, String seconds, String milliseconds ) {
+        _minutes.setText(minutes);
+        _seconds.setText(seconds);
+        _milliseconds.setText(milliseconds);
+    }
+
     @Override
     public void setWind(double windDirection, float strength) {
         _windImage.setRotate(windDirection);
+        _strength.setText(String.valueOf(strength));
     }
 
     public void show() {

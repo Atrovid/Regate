@@ -10,6 +10,7 @@ public interface IGameView {
     void drawWaterBody(Board map);
 
     void updateBoat(double dx, double dy, double angle);
+    void updateTimer(String minutes, String seconds, String milliseconds);
 
     void setWind(double direction, float strength);
 }
