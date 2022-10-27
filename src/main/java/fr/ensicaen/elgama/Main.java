@@ -19,7 +19,7 @@ public final class Main extends Application {
     }
 
     public static ResourceBundle getMessageBundle() {
-        return ResourceBundle.getBundle("fr.ensicaen.elgama.MessageBundle", Locale.getDefault());
+        return ResourceBundle.getBundle("fr.ensicaen.elgama.MessageBundle");
     }
 
     @Override
