@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-import java.awt.geom.Point2D;
+import javafx.geometry.Point2D;
 
 public class WeatherWindTest {
     @Test
@@ -23,7 +23,7 @@ public class WeatherWindTest {
             return;
         }
         Point2D windDirection = wind.getWindDirectionPoint2D();
-        Point2D expectedWindDirection = new Point2D.Float(0,1);
+        Point2D expectedWindDirection = new Point2D(0,1);
         assertEquals(expectedWindDirection.getX(),windDirection.getX());
         assertEquals(expectedWindDirection.getY(),windDirection.getY());
 

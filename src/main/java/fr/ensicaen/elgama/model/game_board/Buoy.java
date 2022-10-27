@@ -1,6 +1,6 @@
 package fr.ensicaen.elgama.model.game_board;
 
-import java.awt.geom.Point2D;
+import javafx.geometry.Point2D;
 
 public class Buoy implements IBoardElement {
     private final Point2D _pos;
@@ -25,13 +25,14 @@ public class Buoy implements IBoardElement {
         if (dist == 0) {
             return isPointColliding(from);
         }
+        Point2D tempFrom = new Point2D(from.getX(),from.getY());
         double incrementX = (to.getX() - from.getX()) / dist;
         double incrementY = (to.getY() - from.getY()) / dist;
         for (int i = 0; i < dist; i++) {
-            double x = from.getX() + incrementX;
-            double y = from.getY() + incrementY;
-            from.setLocation((int) x, (int) y);
-            if (isPointColliding(from)) {
+            double x = tempFrom.getX() + incrementX;
+            double y = tempFrom.getY() + incrementY;
+            tempFrom = new Point2D(x,y);
+            if (isPointColliding(tempFrom)) {
                 return true;
             }
         }
@@ -39,6 +40,7 @@ public class Buoy implements IBoardElement {
     }
 
     public boolean isPointColliding(Point2D point) {
+        System.out.println(point.distance(_pos));
         return (point.distance(_pos) <= _radius);
     }
 

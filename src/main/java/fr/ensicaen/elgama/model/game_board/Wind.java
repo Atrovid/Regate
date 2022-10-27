@@ -1,6 +1,6 @@
 package fr.ensicaen.elgama.model.game_board;
 
-import java.awt.geom.Point2D;
+import javafx.geometry.Point2D;
 
 public abstract class Wind {
     public abstract float getWindStrength();

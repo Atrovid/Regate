@@ -1,6 +1,6 @@
 package fr.ensicaen.elgama.model.game_board;
 
-import java.awt.geom.Point2D;
+import javafx.geometry.Point2D;
 import java.io.IOException;
 
 import java.lang.NumberFormatException;
@@ -35,10 +35,10 @@ public class WeatherWind extends Wind {
 
     private Point2D interpretDirection(String direction) {
         Map<Character, Point2D> map = new HashMap<>();
-        map.put('N', new Point2D.Double(0,-1));
-        map.put('S', new Point2D.Double(0,1));
-        map.put('E', new Point2D.Double(1,0));
-        map.put('O', new Point2D.Double(-1,0));
+        map.put('N', new Point2D(0,-1));
+        map.put('S', new Point2D(0,1));
+        map.put('E', new Point2D(1,0));
+        map.put('O', new Point2D(-1,0));
         double x = 0;
         double y = 0;
         for (char c: direction.toCharArray()) {
@@ -47,8 +47,9 @@ public class WeatherWind extends Wind {
                 y += map.get(c).getY();
             }
         }
-        double norm = Point2D.distance(x,y, 0,0);
-        return new Point2D.Double(x / norm, y / norm);
+        Point2D currentPoint = new Point2D(x,y);
+        double norm = currentPoint.distance(0,0);
+        return new Point2D(x / norm, y / norm);
     }
 
     private String extractFieldValue(String data, String fieldName) {
