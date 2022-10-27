@@ -16,7 +16,9 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Ellipse;
+import javafx.scene.shape.Line;
 import javafx.scene.text.Text;
+import javafx.scene.shape.Line;
 import javafx.stage.Stage;
 
 import java.awt.geom.Point2D;
@@ -34,6 +36,7 @@ public class GameView implements IGameView {
     private AnchorPane _base;
     @FXML
     private ImageView _windImage;
+    private Line _line;
 
     public void setGamePresenter( GamePresenter gamePresenter ) {
         _gamePresenter = gamePresenter;
@@ -48,6 +51,13 @@ public class GameView implements IGameView {
         boat.setFill(Color.BLACK);
         _base.getChildren().add(boat);
         return boat;
+    }
+
+    public Line drawLine(double x, double y, double rx, double ry){
+        Line line = new Line(x,y,rx,ry);
+        line.setFill(Color.GRAY);
+        _base.getChildren().add(line);
+        return line;
     }
 
     public void drawWaterBody(Board map) {

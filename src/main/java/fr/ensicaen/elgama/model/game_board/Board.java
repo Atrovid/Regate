@@ -33,6 +33,10 @@ public class Board {
         return !_shore.isColliding(from,to);
     }
 
+    public CheckPointIterator getCheckpoints() {
+        return new CheckPointIterator(_checkPointList);
+    }
+
     public Object accept(IBoardElementVisitor visitor, Object o) {
         Object result = _shore.accept(visitor, o);
         for (Buoy b : _buoyList) {

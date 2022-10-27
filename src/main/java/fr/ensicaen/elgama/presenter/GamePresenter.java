@@ -5,6 +5,7 @@ import fr.ensicaen.elgama.model.PlayerModel;
 import fr.ensicaen.elgama.model.game_board.*;
 import fr.ensicaen.elgama.model.sailboat.PolarReader;
 import fr.ensicaen.elgama.model.sailboat.Sailboat;
+import fr.ensicaen.elgama.model.race_manager.BoatCheckPointTracker;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;

@@ -6,6 +6,10 @@ import javafx.geometry.Point2D;
 public class CheckPoint implements IBoardElement {
     private final Line2D line;
 
+    public Line2D getLine2D(){
+        return line;
+    }
+
     public CheckPoint(Point2D point1, Point2D point2) {
         line = new Line2D.Double(new java.awt.geom.Point2D.Double(point1.getX(),point1.getY()),
                 new java.awt.geom.Point2D.Double(point2.getX(),point2.getY()));
