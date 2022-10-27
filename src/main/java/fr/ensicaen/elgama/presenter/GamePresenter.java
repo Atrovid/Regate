@@ -11,7 +11,7 @@ import javafx.animation.Timeline;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.util.Duration;
-import java.awt.geom.Point2D;
+import javafx.geometry.Point2D;
 import java.util.ArrayList;
 import java.util.Optional;
 
@@ -29,22 +29,22 @@ public class GamePresenter {
         _playerModel.setNickname(nickName);
         Wind wind1;
         try {
-            WeatherProxy proxy = new WeatherProxy(new Point2D.Double(49.283,-0.25));
+            WeatherProxy proxy = new WeatherProxy(new Point2D(49.283,-0.25));
             wind1 = new WeatherWind(proxy);
         } catch (Exception e) {
             wind1 = new RandomWind();
         }
         _wind = wind1;
         ArrayList<Point2D> points = new ArrayList<>();
-        points.add(new Point2D.Double(0, 0));
-        points.add(new Point2D.Double(200, 0));
-        points.add(new Point2D.Double(200, 100));
-        points.add(new Point2D.Double(100, 100));
-        points.add(new Point2D.Double(100, 200));
-        points.add(new Point2D.Double(100, 400));
-        points.add(new Point2D.Double(250, 600));
-        points.add(new Point2D.Double(0, 600));
-        Buoy[] buoyList = {new Buoy(new Point2D.Double(500, 100), 20)};
+        points.add(new Point2D(0, 0));
+        points.add(new Point2D(200, 0));
+        points.add(new Point2D(200, 100));
+        points.add(new Point2D(100, 100));
+        points.add(new Point2D(100, 200));
+        points.add(new Point2D(100, 400));
+        points.add(new Point2D(250, 600));
+        points.add(new Point2D(0, 600));
+        Buoy[] buoyList = {new Buoy(new Point2D(500, 100), 20)};
         CheckPoint[] cpList = {};
         _board = new Board(new RandomWind(), new Shoreline(points), buoyList, cpList);
         _sailboat = new Sailboat(_board, PolarReader.PolarType.Figaro);
@@ -93,6 +93,7 @@ public class GamePresenter {
     }
 
     private void update() {
+        //TODO check is possible
         _sailboat.move();
         _timer.updateTimer();
     }

@@ -4,7 +4,7 @@ import fr.ensicaen.elgama.model.game_board.RandomWind;
 import fr.ensicaen.elgama.model.game_board.Wind;
 import org.junit.jupiter.api.Test;
 
-import java.awt.geom.Point2D;
+import javafx.geometry.Point2D;
 
 import static org.junit.jupiter.api.Assertions.*;
 

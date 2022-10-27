@@ -40,7 +40,7 @@ public class SailboatNavigation {
 
 
     public void moveForward() {
-        java.awt.geom.Point2D windDir = _board.getWindDirection();
+        Point2D windDir = _board.getWindDirection();
         double angle = _direction.angle(windDir.getX(), windDir.getY());
         double diffAngle = 180 - angle;
         _speed = _direction.multiply(

@@ -1,6 +1,6 @@
 package fr.ensicaen.elgama.model.game_board;
 
-import java.awt.geom.Point2D;
+import javafx.geometry.Point2D;
 
 public class Board {
     private final Wind _wind;
@@ -16,11 +16,11 @@ public class Board {
     }
 
     public Point2D getStartingPosition(){
-        return new Point2D.Double(580,480);
+        return new Point2D(580,480);
     }
 
     public Point2D getBoardSize(){
-        return new Point2D.Double(800,600);
+        return new Point2D(800,600);
     }
 
     public Point2D getWindDirection() {
@@ -28,6 +28,10 @@ public class Board {
     }
 
     public float getWindStrength() { return _wind.getWindStrength(); }
+
+    public boolean isMovePossible(Point2D from, Point2D to) {
+        return !_shore.isColliding(from,to);
+    }
 
     public Object accept(IBoardElementVisitor visitor, Object o) {
         Object result = _shore.accept(visitor, o);
@@ -40,8 +44,4 @@ public class Board {
         return result;
     }
 
-    public boolean isMovePossible(Point2D oldP, Point2D newP){
-        //TODO Basil à toi de jouer !!!
-        return true;
-    }
 }
