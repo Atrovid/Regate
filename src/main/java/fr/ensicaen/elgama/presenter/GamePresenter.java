@@ -2,12 +2,7 @@ package fr.ensicaen.elgama.presenter;
 
 import fr.ensicaen.elgama.model.BoatModel;
 import fr.ensicaen.elgama.model.PlayerModel;
-import fr.ensicaen.elgama.model.game_board.Board;
-import fr.ensicaen.elgama.model.game_board.Buoy;
-import fr.ensicaen.elgama.model.game_board.CheckPoint;
-import fr.ensicaen.elgama.model.game_board.RandomWind;
-import fr.ensicaen.elgama.model.game_board.Shoreline;
-import fr.ensicaen.elgama.model.game_board.Wind;
+import fr.ensicaen.elgama.model.game_board.*;
 import fr.ensicaen.elgama.model.sailboat.PolarReader;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
