@@ -1,4 +1,4 @@
-package fr.ensicaen.elgama.view;
+package fr.ensicaen.elgama.presenter;
 
 // FIXME HORREUR !!!! IL y a un couplage entre la vue et le modèle
 import fr.ensicaen.elgama.model.game_board.Buoy;

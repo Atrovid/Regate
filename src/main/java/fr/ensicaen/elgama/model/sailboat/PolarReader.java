@@ -12,8 +12,8 @@ public class PolarReader {
     }
 
     public double[][] loadData() {
-        // FIXME déclaration d'une matrice de style C et pas Java !
-        double data[][] = new double[19][14];
+
+        double[][] data = new double[19][14];
         int j = 0;
         try {
             File myObj = new File(_file);
