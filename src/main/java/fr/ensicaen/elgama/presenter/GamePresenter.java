@@ -1,5 +1,6 @@
 package fr.ensicaen.elgama.presenter;
 
+import fr.ensicaen.elgama.Main;
 import fr.ensicaen.elgama.model.PlayerModel;
 import fr.ensicaen.elgama.model.game_board.*;
 import fr.ensicaen.elgama.model.sailboat.PolarReader;
@@ -7,9 +8,12 @@ import fr.ensicaen.elgama.model.sailboat.Sailboat;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.util.Duration;
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
+import java.util.Optional;
 
 public class GamePresenter {
     private final PlayerModel _playerModel; // TODO remove player model
@@ -80,12 +84,12 @@ public class GamePresenter {
 
 
     private void runGameLoop() {
-        Timeline _timeline = new Timeline(new KeyFrame(Duration.millis(50), onFinished -> {
+        Timeline timeline = new Timeline(new KeyFrame(Duration.millis(50), onFinished -> {
             update();
             render();
         }));
-        _timeline.setCycleCount(Animation.INDEFINITE);
-        _timeline.play();
+        timeline.setCycleCount(Animation.INDEFINITE);
+        timeline.play();
     }
 
     private void update() {
@@ -97,5 +101,18 @@ public class GamePresenter {
     private void render() {
         _gameView.updateBoat( _sailboat.getSpeed().getX(), _sailboat.getSpeed().getY(), _sailboat.getAngle());
         _gameView.updateTimer(String.format("%02d",_timer.getMinute()),String.format("%02d",_timer.getSecond()),String.format("%03d",_timer.getMilliSecond()));
+    }
+
+
+    private void endGame() {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(Main.getMessageBundle().getString("game.endTitle"));
+        alert.setHeaderText(Main.getMessageBundle().getString("game.endHeader"));
+        alert.setContentText(Main.getMessageBundle().getString("game.endContent"));
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.isEmpty() || result.get() == ButtonType.OK){
+            _gameView.close();
+        }
     }
 }
