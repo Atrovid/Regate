@@ -3,6 +3,7 @@ package fr.ensicaen.elgama.view;
 import fr.ensicaen.elgama.model.game_board.Board; // FIXME HORREUR couplage entre la vue et le modèle
 import fr.ensicaen.elgama.presenter.GamePresenter;
 import fr.ensicaen.elgama.presenter.IGameView;
+import fr.ensicaen.elgama.presenter.MapElementView;
 import fr.ensicaen.elgama.presenter.UserAction;
 import fr.ensicaen.elgama.Main;
 import javafx.fxml.FXML;
