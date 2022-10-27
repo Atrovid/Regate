@@ -1,6 +1,5 @@
 package fr.ensicaen.elgama.model.sailboat;
 
-import com.sun.scenario.effect.impl.sw.java.JSWPhongLighting_POINTPeer;
 import fr.ensicaen.elgama.model.game_board.Board;
 import javafx.geometry.Point2D;
 
