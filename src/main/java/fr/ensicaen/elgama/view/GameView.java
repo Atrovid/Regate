@@ -95,6 +95,10 @@ public class GameView implements IGameView {
         }
     }
 
+    public void close(){
+        _stage.close();
+    }
+
     public static class GameViewFactory {
         private GameViewFactory() {
         }

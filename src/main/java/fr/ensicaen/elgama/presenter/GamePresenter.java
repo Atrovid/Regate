@@ -1,5 +1,6 @@
 package fr.ensicaen.elgama.presenter;
 
+import fr.ensicaen.elgama.Main;
 import fr.ensicaen.elgama.model.BoatModel;
 import fr.ensicaen.elgama.model.PlayerModel;
 import fr.ensicaen.elgama.model.game_board.*;
@@ -7,9 +8,12 @@ import fr.ensicaen.elgama.model.sailboat.PolarReader;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.util.Duration;
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
+import java.util.Optional;
 
 public class GamePresenter {
     private final PlayerModel _playerModel;
@@ -101,5 +105,18 @@ public class GamePresenter {
     private void render() {
         _gameView.updateBoat(_boatModel.getDx(), _boatModel.getDy(), _boatModel.getAngle());
         _gameView.updateTimer(String.format("%02d",_timer.getMinute()),String.format("%02d",_timer.getSecond()),String.format("%03d",_timer.getMilliSecond()));
+    }
+
+
+    private void endGame() {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(Main.getMessageBundle().getString("game.endTitle"));
+        alert.setHeaderText(Main.getMessageBundle().getString("game.endHeader"));
+        alert.setContentText(Main.getMessageBundle().getString("game.endContent"));
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.isEmpty() || result.get() == ButtonType.OK){
+            _gameView.close();
+        }
     }
 }
