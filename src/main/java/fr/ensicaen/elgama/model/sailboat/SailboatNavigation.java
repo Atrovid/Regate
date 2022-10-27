@@ -5,7 +5,7 @@ import javafx.geometry.Point2D;
 
 
 public class SailboatNavigation {
-    private Point2D _position = new Point2D( 580, 480);
+    private Point2D _position;
     private Point2D _direction = new Point2D(0,-1);
     private Point2D _speed = new Point2D(0, -1);
     private final Board _board;
@@ -14,6 +14,7 @@ public class SailboatNavigation {
     public SailboatNavigation( Board board, PolarReader.PolarType polarType ) {
         _board = board;
         _sailboatPolar = new SailboatPolar( polarType );
+        _position = new Point2D( board.getStartingPosition().getX(), board.getStartingPosition().getY() );
     }
 
     public Point2D getPosition() {return _position;}
