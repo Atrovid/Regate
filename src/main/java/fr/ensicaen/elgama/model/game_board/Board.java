@@ -30,7 +30,15 @@ public class Board {
     public float getWindStrength() { return _wind.getWindStrength(); }
 
     public boolean isMovePossible(Point2D from, Point2D to) {
-        return !_shore.isColliding(from,to);
+        if (_shore.isColliding(from,to) ) {
+            return false;
+        }
+        for (Buoy buoy : _buoyList) {
+            if (buoy.isColliding(from, to)) {
+                return false;
+            }
+        }
+        return true;
     }
 
     public Object accept(IBoardElementVisitor visitor, Object o) {
@@ -43,5 +51,4 @@ public class Board {
         }
         return result;
     }
-
 }
