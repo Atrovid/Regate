@@ -2,12 +2,7 @@ package fr.ensicaen.elgama.presenter;
 
 import fr.ensicaen.elgama.model.BoatModel;
 import fr.ensicaen.elgama.model.PlayerModel;
-import fr.ensicaen.elgama.model.game_board.Board;
-import fr.ensicaen.elgama.model.game_board.Buoy;
-import fr.ensicaen.elgama.model.game_board.CheckPoint;
-import fr.ensicaen.elgama.model.game_board.RandomWind;
-import fr.ensicaen.elgama.model.game_board.Shoreline;
-import fr.ensicaen.elgama.model.game_board.Wind;
+import fr.ensicaen.elgama.model.game_board.*;
 import fr.ensicaen.elgama.model.sailboat.PolarReader;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
@@ -24,6 +19,7 @@ public class GamePresenter {
     private IGameView _gameView;
     private boolean _started = false;
     private Timeline _timeline;
+    private Timer _timer;
 
     public GamePresenter(String nickName) {
         _playerModel = new PlayerModel();
@@ -63,6 +59,7 @@ public class GamePresenter {
     private void startGame() {
         if (!_started) {
             _started = true;
+            _timer = new Timer();
             runGameLoop();
         }
     }
@@ -91,9 +88,11 @@ public class GamePresenter {
 
     private void update() {
         _boatModel.move(_speedTable, _wind);
+        _timer.updateTimer();
     }
 
     private void render() {
         _gameView.updateBoat(_boatModel.getDx(), _boatModel.getDy(), _boatModel.getAngle());
+        _gameView.updateTimer(String.format("%02d",_timer.getMinute()),String.format("%02d",_timer.getSecond()),String.format("%03d",_timer.getMilliSecond()));
     }
 }

@@ -32,17 +32,17 @@
                   <Font size="25.0" />
                </font>
             </Text>
-            <Text layoutX="27.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" text="00">
+            <Text fx:id="_minutes" layoutX="27.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" text="00">
                <font>
                   <Font size="25.0" />
                </font>
             </Text>
-            <Text layoutX="81.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" text="00">
+            <Text fx:id="_seconds" layoutX="81.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" text="00">
                <font>
                   <Font size="25.0" />
                </font>
             </Text>
-            <Text layoutX="131.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" text="00">
+            <Text fx:id="_milliseconds" layoutX="131.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" text="00">
                <font>
                   <Font size="25.0" />
                </font>
