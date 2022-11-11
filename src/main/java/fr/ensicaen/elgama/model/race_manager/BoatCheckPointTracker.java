@@ -1,36 +1,46 @@
 package fr.ensicaen.elgama.model.race_manager;
 
+import fr.ensicaen.elgama.model.sailboat.ISailboatObserver;
 import fr.ensicaen.elgama.model.sailboat.Sailboat;
 import fr.ensicaen.elgama.model.game_board.CheckPoint;
 import fr.ensicaen.elgama.model.game_board.CheckPointIterator;
-
-
 import javafx.geometry.Point2D;
 
+public class BoatCheckPointTracker implements ISailboatObserver {
+    private Point2D _boatLastPosition;
+    private final CheckPointIterator _checkPointIterator;
+    private CheckPoint _currentCheckPoint;
+    private boolean _finished;
 
-public class BoatCheckPointTracker {
-    private javafx.geometry.Point2D _lastPos;
-    private final CheckPointIterator _cpIterator;
-    private CheckPoint _currentCP;
-
-    BoatCheckPointTracker(CheckPoint[] cpList ){
-        _cpIterator = new CheckPointIterator(cpList);
-        _lastPos = new Point2D(-1.0,-1.0);
+    public BoatCheckPointTracker(Sailboat sailboatTracked, CheckPointIterator checkPointIterator) {
+        _checkPointIterator = checkPointIterator;
+        _currentCheckPoint = _checkPointIterator.next();
+        sailboatTracked.observe(this);
+        _boatLastPosition = sailboatTracked.getPosition();
+        _finished = false;
     }
 
-    public CheckPoint getNextCheckPoint(){
-            return _cpIterator.next();
-    }
-
+    @Override
     public void update(Sailboat boat) {
-        javafx.geometry.Point2D boatPos = boat.getPosition();
-        if (_currentCP.isColliding(_lastPos, boatPos)) {
-            _currentCP = getNextCheckPoint();
+        if (_finished) {
+            return;
         }
-        _lastPos = boatPos;
+        Point2D newBoatPosition = boat.getPosition();
+        if (_currentCheckPoint.isColliding(_boatLastPosition, newBoatPosition)) {
+            if (_checkPointIterator.hasNext()) {
+                _currentCheckPoint = _checkPointIterator.next();
+            } else {
+                _finished = true;
+            }
+        }
+        _boatLastPosition = newBoatPosition;
     }
 
-    public boolean isFinished(){
-        return !_cpIterator.hasNext();
+    public boolean isFinished() {
+        return _finished;
+    }
+
+    public CheckPoint getNextCheckPoint() {
+        return _currentCheckPoint;
     }
 }

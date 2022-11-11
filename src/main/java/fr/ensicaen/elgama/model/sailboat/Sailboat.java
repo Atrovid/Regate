@@ -2,10 +2,11 @@ package fr.ensicaen.elgama.model.sailboat;
 
 import fr.ensicaen.elgama.model.game_board.Board;
 import javafx.geometry.Point2D;
+import java.util.ArrayList;
 
 public class Sailboat  {
-
     private final SailboatNavigation _sailboatNavigation;
+    private final ArrayList<ISailboatObserver> _observers = new ArrayList<>();
 
     public Sailboat( Board board, PolarReader.PolarType polarType ) {
         _sailboatNavigation = new SailboatNavigation( board, polarType );
@@ -13,6 +14,17 @@ public class Sailboat  {
 
     public void move() {
         _sailboatNavigation.moveForward();
+        notifyObservers();
+    }
+
+    public void observe(ISailboatObserver observer) {
+        _observers.add(observer);
+    }
+
+    private void notifyObservers() {
+        for (ISailboatObserver observer: _observers) {
+            observer.update(this);
+        }
     }
 
     public Point2D getPosition() {

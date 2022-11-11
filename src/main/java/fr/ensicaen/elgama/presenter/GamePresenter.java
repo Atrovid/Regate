@@ -2,14 +2,13 @@ package fr.ensicaen.elgama.presenter;
 
 import fr.ensicaen.elgama.Main;
 import fr.ensicaen.elgama.model.game_board.*;
+import fr.ensicaen.elgama.model.race_manager.BoatCheckPointTracker;
 import fr.ensicaen.elgama.model.sailboat.Sailboat;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
 import javafx.util.Duration;
-import java.util.Optional;
 
 public class GamePresenter {
     private final Sailboat _sailboat;
@@ -17,10 +16,13 @@ public class GamePresenter {
     private boolean _started = false;
     private final Board _board;
     private Timer _timer;
+    private Timeline _timeline;
+    private final BoatCheckPointTracker _boatCheckPointTracker;
 
     public GamePresenter(Board board, Sailboat sailboat) {
         _board = board;
         _sailboat = sailboat;
+        _boatCheckPointTracker = new BoatCheckPointTracker(_sailboat, _board.getCheckpoints());
     }
 
     public void setGameView(IGameView gameView) {
@@ -32,13 +34,10 @@ public class GamePresenter {
 
     private void displayBoard() {
         drawShoreline(_board.getShoreline());
-        for (Buoy buoy: _board.getBuoys()) {
+        for (Buoy buoy : _board.getBuoys()) {
             drawBuoy(buoy);
         }
-        for (CheckPointIterator it = _board.getCheckpoints(); it.hasNext(); ) {
-            CheckPoint checkPoint = it.next();
-            drawCheckPoint(checkPoint);
-        }
+        drawNextCheckPoint();
     }
 
     public void drawBuoy(Buoy buoy) {
@@ -49,8 +48,10 @@ public class GamePresenter {
         _gameView.drawShoreline(shoreline.getPointsAsDoubleArray());
     }
 
-    public void drawCheckPoint(CheckPoint checkPoint) {
-        _gameView.drawCheckPoint(checkPoint.getPoint1(), checkPoint.getPoint2());
+    public void drawNextCheckPoint() {
+        _gameView.removeAllCheckPoints();
+        CheckPoint nextCheckPoint = _boatCheckPointTracker.getNextCheckPoint();
+        _gameView.drawCheckPoint(nextCheckPoint.getPoint1(), nextCheckPoint.getPoint2());
     }
 
     public void handleUserAction(UserAction code) {
@@ -78,32 +79,40 @@ public class GamePresenter {
     }
 
     private void runGameLoop() {
-        Timeline timeline = new Timeline(new KeyFrame(Duration.millis(50), onFinished -> {
+        _timeline = new Timeline(new KeyFrame(Duration.millis(50), onFinished -> {
             update();
             render();
         }));
-        timeline.setCycleCount(Animation.INDEFINITE);
-        timeline.play();
+        _timeline.setCycleCount(Animation.INDEFINITE);
+        _timeline.play();
     }
 
     private void update() {
         _sailboat.move();
         _timer.updateTimer();
+        if (_boatCheckPointTracker.isFinished()) {
+            _timeline.stop();
+            endGame();
+        } else {
+            drawNextCheckPoint();
+        }
     }
 
     private void render() {
         _gameView.updateBoat(_sailboat.getSpeed().getX(), _sailboat.getSpeed().getY(), _sailboat.getAngle());
-        _gameView.updateTimer(String.format("%02d", _timer.getMinute()), String.format("%02d", _timer.getSecond()), String.format("%03d", _timer.getMilliSecond()));
+        _gameView.updateTimer(
+                String.format("%02d", _timer.getMinute()),
+                String.format("%02d", _timer.getSecond()),
+                String.format("%03d", _timer.getMilliSecond()));
     }
 
     private void endGame() {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(Main.getMessageBundle().getString("game.endTitle"));
         alert.setHeaderText(Main.getMessageBundle().getString("game.endHeader"));
-        alert.setContentText(Main.getMessageBundle().getString("game.endContent"));
-        Optional<ButtonType> result = alert.showAndWait();
-        if (result.isEmpty() || result.get() == ButtonType.OK) {
-            _gameView.close();
-        }
+        String time = "%02d:%02d:%03d".formatted(_timer.getMinute(), _timer.getSecond(), _timer.getMilliSecond());
+        alert.setContentText(Main.getMessageBundle().getString("game.endContent") + time);
+        alert.setOnCloseRequest(event -> _gameView.close());
+        alert.show();
     }
 }
