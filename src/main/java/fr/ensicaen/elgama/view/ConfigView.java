@@ -34,6 +34,14 @@ public class ConfigView implements IConfigView {
         _stage.close();
     }
 
+    public void onClickOnFigaroPolar() {
+        _configPresenter.setFigaroPolar();
+    }
+
+    public void onCLickOnOceanisPolar() {
+        _configPresenter.setOceanisPolar();
+    }
+
 
     public static class ConfigViewFactory {
         private ConfigViewFactory() {

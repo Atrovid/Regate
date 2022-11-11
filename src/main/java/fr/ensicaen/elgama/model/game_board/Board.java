@@ -23,6 +23,10 @@ public class Board {
         return new Point2D(800,600);
     }
 
+    public double getWindAngle() {
+        return  _wind.getWindDirectionDouble();
+    }
+
     public Point2D getWindDirection() {
         return _wind.getWindDirectionPoint2D();
     }

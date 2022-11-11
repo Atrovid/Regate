@@ -18,7 +18,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Ellipse;
 import javafx.scene.shape.Line;
 import javafx.scene.text.Text;
-import javafx.scene.shape.Line;
 import javafx.stage.Stage;
 
 import java.awt.geom.Point2D;
@@ -60,7 +59,7 @@ public class GameView implements IGameView {
         return line;
     }
 
-    public void drawWaterBody(Board map) {
+    public void drawBoard(Board map) {
         MapElementView visitor = new MapElementView(_base);
         map.accept(visitor, null);
     }
@@ -114,7 +113,7 @@ public class GameView implements IGameView {
         }
 
         public static GameView createView() throws IOException {
-            FXMLLoader loader = new FXMLLoader(LoginView.class.getResource("SpotMap.fxml"), Main.getMessageBundle());
+            FXMLLoader loader = new FXMLLoader(StartView.class.getResource("SpotMap.fxml"), Main.getMessageBundle());
             Parent root = loader.load();
             GameView view = loader.getController();
             Scene scene = new Scene(root, 800, 600);

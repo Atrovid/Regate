@@ -1,6 +1,6 @@
 package fr.ensicaen.elgama.presenter;
 
-import fr.ensicaen.elgama.view.LoginView;
+import fr.ensicaen.elgama.view.ConfigView;
 import fr.ensicaen.elgama.view.StartView;
 
 import java.io.IOException;
@@ -14,10 +14,10 @@ public class StartPresenter {
 
     public void launchGame() {
         try {
-            LoginView view = LoginView.LoginViewFactory.createView();
-            LoginPresenter gamePresenter = new LoginPresenter();
-            view.setLoginPresenter(gamePresenter);
-            gamePresenter.setLoginView(view);
+            ConfigView view = ConfigView.ConfigViewFactory.createView();
+            ConfigPresenter configPresenter = new ConfigPresenter();
+            view.setConfigPresenter(configPresenter);
+            configPresenter.setConfigView(view);
             view.show();
         } catch (IOException e) {
             e.printStackTrace();
