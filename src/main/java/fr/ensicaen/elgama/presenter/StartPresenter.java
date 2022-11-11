@@ -24,5 +24,4 @@ public class StartPresenter {
         }
         _startView.close();
     }
-
 }

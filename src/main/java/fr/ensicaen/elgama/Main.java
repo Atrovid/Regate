@@ -14,7 +14,7 @@ public final class Main extends Application {
         launch(args);
     }
 
-    public static void changeLanguage(String lang, String country){
+    public static void changeLanguage(String lang, String country) {
         Locale.setDefault(new Locale(lang, country));
     }
 

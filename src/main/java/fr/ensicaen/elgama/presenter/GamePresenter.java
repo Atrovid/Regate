@@ -1,8 +1,12 @@
 package fr.ensicaen.elgama.presenter;
 
 import fr.ensicaen.elgama.Main;
-import fr.ensicaen.elgama.model.game_board.*;
+import fr.ensicaen.elgama.model.game_board.Board;
+import fr.ensicaen.elgama.model.game_board.Buoy;
+import fr.ensicaen.elgama.model.game_board.CheckPoint;
+import fr.ensicaen.elgama.model.game_board.Shoreline;
 import fr.ensicaen.elgama.model.race_manager.BoatCheckPointTracker;
+import fr.ensicaen.elgama.model.race_manager.Timer;
 import fr.ensicaen.elgama.model.sailboat.Sailboat;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
@@ -12,12 +16,12 @@ import javafx.util.Duration;
 
 public class GamePresenter {
     private final Sailboat _sailboat;
+    private final Board _board;
+    private final BoatCheckPointTracker _boatCheckPointTracker;
     private IGameView _gameView;
     private boolean _started = false;
-    private final Board _board;
     private Timer _timer;
     private Timeline _timeline;
-    private final BoatCheckPointTracker _boatCheckPointTracker;
 
     public GamePresenter(Board board, Sailboat sailboat) {
         _board = board;

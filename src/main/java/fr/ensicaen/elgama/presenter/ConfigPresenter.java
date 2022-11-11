@@ -51,8 +51,7 @@ public final class ConfigPresenter {
         shorelinePoints.add(new Point2D(718, 575));
         shorelinePoints.add(new Point2D(724, 600));
         shorelinePoints.add(new Point2D(800, 600));
-        Buoy[] buoyList = {
-                new Buoy(new Point2D(450, 100), 20), // top
+        Buoy[] buoyList = {new Buoy(new Point2D(450, 100), 20), // top
                 new Buoy(new Point2D(450, 500), 20), // bottom
                 new Buoy(new Point2D(150, 300), 20), // left
         };
@@ -67,7 +66,7 @@ public final class ConfigPresenter {
 
     private Wind createWind() {
         try {
-            WeatherProxy proxy = new WeatherProxy(new Point2D(49.283,-0.25));
+            WeatherProxy proxy = new WeatherProxy(new Point2D(49.283, -0.25));
             return new WeatherWind(proxy);
         } catch (Exception e) {
             return new RandomWind();

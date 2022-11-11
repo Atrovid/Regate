@@ -2,6 +2,9 @@ package fr.ensicaen.elgama.model.game_board;
 
 import javafx.geometry.Point2D;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public class Board {
     private final Wind _wind;
     private final Shoreline _shore;
@@ -15,26 +18,28 @@ public class Board {
         _checkPointList = checkPointList;
     }
 
-    public Point2D getStartingPosition(){
-        return new Point2D(530,530);
+    public Point2D getStartingPosition() {
+        return new Point2D(530, 530);
     }
 
     public double getWindAngle() {
-        return  _wind.getWindDirectionDouble();
+        return _wind.getWindDirectionDouble();
     }
 
     public Point2D getWindDirection() {
         return _wind.getWindDirectionPoint2D();
     }
 
-    public float getWindStrength() { return _wind.getWindStrength(); }
+    public float getWindStrength() {
+        return _wind.getWindStrength();
+    }
 
     public boolean isMovePossible(Point2D from, Point2D to) {
-        if (_shore.isColliding(from,to) ) {
-            return false;
-        }
-        for (Buoy buoy : _buoyList) {
-            if (buoy.isColliding(from, to)) {
+        ArrayList<IBoardElement> impassableObstacles = new ArrayList<>(_buoyList.length + 1);
+        impassableObstacles.add(_shore);
+        impassableObstacles.addAll(Arrays.stream(_buoyList).toList());
+        for (IBoardElement obstacle : impassableObstacles) {
+            if (obstacle.isColliding(from, to)) {
                 return false;
             }
         }

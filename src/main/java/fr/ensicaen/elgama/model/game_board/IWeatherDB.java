@@ -3,5 +3,5 @@ package fr.ensicaen.elgama.model.game_board;
 import java.io.IOException;
 
 public interface IWeatherDB {
-    public String requestData() throws IOException;
+    String requestData() throws IOException;
 }

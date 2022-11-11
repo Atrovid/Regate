@@ -3,11 +3,11 @@ package fr.ensicaen.elgama.model.sailboat;
 public class SailboatPolar {
     private final PolarReader polarReader;
 
-    public SailboatPolar( PolarReader.PolarType polarType) {
-        polarReader = new PolarReader( polarType );
+    public SailboatPolar(PolarReader.PolarType polarType) {
+        polarReader = new PolarReader(polarType);
     }
 
-    public double getMaxSpeed(double angle, float windStrength ) {
+    public double getMaxSpeed(double angle, float windStrength) {
         int strengthRounded;
         if (windStrength > 30) {
             strengthRounded = 30;

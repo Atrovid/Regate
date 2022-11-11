@@ -1,7 +1,6 @@
-package fr.ensicaen.elgama.model.game_board;
+package fr.ensicaen.elgama.model.race_manager;
 
 public class Timer {
-
     private int _milliSecondInit;
     private int _milliSecondElapsed;
 
@@ -14,7 +13,7 @@ public class Timer {
     }
 
     private int getSecondElapsed() {
-        return _milliSecondElapsed /1000;
+        return _milliSecondElapsed / 1000;
     }
 
     public int getMilliSecond() {

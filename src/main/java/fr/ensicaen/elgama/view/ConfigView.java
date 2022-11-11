@@ -12,8 +12,8 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class ConfigView implements IConfigView {
-    private ConfigPresenter _configPresenter;
     private static Stage _stage;
+    private ConfigPresenter _configPresenter;
 
     @FXML
     private void onClickOnStartGame() {
@@ -21,7 +21,7 @@ public class ConfigView implements IConfigView {
     }
 
 
-    public void setConfigPresenter(ConfigPresenter presenter ) {
+    public void setConfigPresenter(ConfigPresenter presenter) {
         _configPresenter = presenter;
     }
 
@@ -47,7 +47,7 @@ public class ConfigView implements IConfigView {
         private ConfigViewFactory() {
         }
 
-        public static ConfigView createView( ) throws IOException {
+        public static ConfigView createView() throws IOException {
             FXMLLoader loader = new FXMLLoader(StartView.class.getResource("Config.fxml"), Main.getMessageBundle());
             Parent root = loader.load();
             ConfigView view = loader.getController();

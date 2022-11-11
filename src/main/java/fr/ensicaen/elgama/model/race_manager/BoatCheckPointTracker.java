@@ -1,14 +1,14 @@
 package fr.ensicaen.elgama.model.race_manager;
 
-import fr.ensicaen.elgama.model.sailboat.ISailboatObserver;
-import fr.ensicaen.elgama.model.sailboat.Sailboat;
 import fr.ensicaen.elgama.model.game_board.CheckPoint;
 import fr.ensicaen.elgama.model.game_board.CheckPointIterator;
+import fr.ensicaen.elgama.model.sailboat.ISailboatObserver;
+import fr.ensicaen.elgama.model.sailboat.Sailboat;
 import javafx.geometry.Point2D;
 
 public class BoatCheckPointTracker implements ISailboatObserver {
-    private Point2D _boatLastPosition;
     private final CheckPointIterator _checkPointIterator;
+    private Point2D _boatLastPosition;
     private CheckPoint _currentCheckPoint;
     private boolean _finished;
 
