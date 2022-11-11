@@ -22,6 +22,12 @@ public class StartView implements IStartView {
     private StartPresenter _startPresenter;
     private Stage _stage;
 
+    static MenuItem createMenuItem(String text, String id, EventHandler<ActionEvent> handler) {
+        MenuItem result = new MenuItem(text);
+        result.setId(id);
+        result.setOnAction(handler);
+        return result;
+    }
 
     public void setStartPresenter(StartPresenter presenter) {
         _startPresenter = presenter;
@@ -43,7 +49,6 @@ public class StartView implements IStartView {
 
     @FXML
     private void onClickChangeLanguage(String lang, String country) throws IOException {
-
         Main.changeLanguage(lang, country);
         StartView view = StartView.StartViewFactory.createView(_stage);
         StartPresenter presenter = new StartPresenter();
@@ -52,17 +57,9 @@ public class StartView implements IStartView {
         view.show();
     }
 
-    static MenuItem createMenuItem(String text, String id, EventHandler<ActionEvent> handler) {
-        MenuItem result = new MenuItem(text);
-        result.setId(id);
-        result.setOnAction(handler);
-        return result;
-    }
-
-
-
     public static class StartViewFactory {
-        private StartViewFactory() {}
+        private StartViewFactory() {
+        }
 
         public static StartView createView(Stage primaryStage) throws IOException {
             FXMLLoader loader = new FXMLLoader(StartView.class.getResource("StartDialog.fxml"), Main.getMessageBundle());
@@ -80,13 +77,7 @@ public class StartView implements IStartView {
                 }
             };
 
-            view.languageButton.getItems().addAll(
-                    createMenuItem("Français", "fr_FR", handler),
-                    createMenuItem("English", "en_US", handler)
-            );
-
-
-
+            view.languageButton.getItems().addAll(createMenuItem("Français", "fr_FR", handler), createMenuItem("English", "en_US", handler));
             Scene scene = new Scene(root);
             view._stage = primaryStage;
             primaryStage.setScene(scene);
@@ -94,5 +85,4 @@ public class StartView implements IStartView {
             return view;
         }
     }
-
 }

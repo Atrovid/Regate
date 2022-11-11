@@ -1,14 +1,13 @@
 package fr.ensicaen.elgama.model.game_board;
 
 import javafx.geometry.Point2D;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 public class RandomWind extends Wind {
-
     final private float _strength;
-
     final private Point2D _direction;
 
     public RandomWind() {
@@ -32,14 +31,14 @@ public class RandomWind extends Wind {
     }
 
     public Point2D createWindDirection() {
-        Point2D E = new Point2D(1.0,0.0);
-        Point2D NE = new Point2D(1.0,1.0);
-        Point2D N = new Point2D(0.0,1.0);
-        Point2D NO = new Point2D(-1.0,1.0);
-        Point2D O = new Point2D(-1.0,0.0);
-        Point2D SO = new Point2D(-1.0,-1.0);
-        Point2D S = new Point2D(0.0,-1.0);
-        Point2D SE = new Point2D(1.0,-1.0);
+        Point2D E = new Point2D(1.0, 0.0);
+        Point2D NE = new Point2D(1.0, 1.0);
+        Point2D N = new Point2D(0.0, 1.0);
+        Point2D NO = new Point2D(-1.0, 1.0);
+        Point2D O = new Point2D(-1.0, 0.0);
+        Point2D SO = new Point2D(-1.0, -1.0);
+        Point2D S = new Point2D(0.0, -1.0);
+        Point2D SE = new Point2D(1.0, -1.0);
 
         List<Point2D> listOfPoints = new ArrayList<>();
         Collections.addAll(listOfPoints, E, NE, N, NO, O, SO, S, SE);
@@ -48,7 +47,7 @@ public class RandomWind extends Wind {
         return normalize(listOfPoints.get(randomChoice));
     }
 
-    private Point2D normalize(Point2D p){
+    private Point2D normalize(Point2D p) {
         double x = p.getX();
         double y = p.getY();
         double norm = p.distance(0, 0);

@@ -1,15 +1,20 @@
 package fr.ensicaen.elgama.presenter;
 
-import fr.ensicaen.elgama.model.game_board.Board;
-
-import java.awt.geom.Point2D;
+import javafx.geometry.Point2D;
 
 public interface IGameView {
-    void addBoat(double x, double y);
+    void addBoat(Point2D boatPosition);
 
-    void drawWaterBody(Board map);
+    void drawShoreline(double[] polygonVertices);
+
+    void drawBuoy(Point2D center, int radius);
+
+    void drawCheckPoint(Point2D p1, Point2D p2);
+
+    void removeAllCheckPoints();
 
     void updateBoat(double dx, double dy, double angle);
+
     void updateTimer(String minutes, String seconds, String milliseconds);
 
     void setWind(double direction, float strength);

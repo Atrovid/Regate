@@ -2,7 +2,6 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.MenuButton?>
-<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -12,35 +11,34 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="332.0" prefWidth="407.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.ensicaen.elgama.view.StartView">
-    <children>
-        <ImageView fitHeight="316.0" fitWidth="462.0" layoutX="-27.0" pickOnBounds="true" preserveRatio="true">
-            <Image url="@../images/logo_elgama.png" />
-        </ImageView>
-        <GridPane layoutX="54.0" layoutY="329.0">
-            <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-            </columnConstraints>
-            <rowConstraints>
-                <RowConstraints />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            </rowConstraints>
-            <children>
-                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Wind today : " GridPane.rowIndex="1" />
-                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Direction" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Force" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-            </children>
-        </GridPane>
-      <Pane layoutX="-120.0" layoutY="269.0" prefHeight="200.0" prefWidth="649.0" style="-fx-background-color: #333366;">
-         <children>
-              <Button fx:id="playButton" layoutX="293.0" layoutY="14.0" mnemonicParsing="false" onAction="#onClickOnStartGame" prefHeight="28.0" prefWidth="64.0" text="%start.play" />
-         </children>
-      </Pane>
-      <Pane layoutX="-35.0" layoutY="-109.0" prefHeight="55.0" prefWidth="98.0" />
-      <MenuButton fx:id="languageButton"  layoutX="282.0" layoutY="14.0" mnemonicParsing="false" text="%start.language">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="332.0"
+            prefWidth="407.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="fr.ensicaen.elgama.view.StartView">
+    <ImageView fitHeight="316.0" fitWidth="462.0" layoutX="-27.0" pickOnBounds="true" preserveRatio="true">
+        <Image url="@../images/logo_elgama.png"/>
+    </ImageView>
+    <GridPane layoutX="54.0" layoutY="329.0">
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints/>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+        </rowConstraints>
+        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Wind today : " GridPane.rowIndex="1"/>
+        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Direction" GridPane.columnIndex="1"
+              GridPane.rowIndex="1"/>
+        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Force" GridPane.columnIndex="2" GridPane.rowIndex="1"/>
+    </GridPane>
+    <Pane layoutX="-120.0" layoutY="269.0" prefHeight="200.0" prefWidth="649.0"
+          style="-fx-background-color: #333366;">
+        <Button fx:id="playButton" layoutX="293.0" layoutY="14.0" mnemonicParsing="false"
+                onAction="#onClickOnStartGame" prefHeight="28.0" prefWidth="64.0" text="%start.play"/>
+    </Pane>
+    <Pane layoutX="-35.0" layoutY="-109.0" prefHeight="55.0" prefWidth="98.0"/>
+    <MenuButton fx:id="languageButton" layoutX="282.0" layoutY="14.0" mnemonicParsing="false" text="%start.language">
 
-      </MenuButton>
-    </children>
+    </MenuButton>
 </AnchorPane>

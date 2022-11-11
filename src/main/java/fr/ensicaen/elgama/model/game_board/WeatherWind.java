@@ -1,20 +1,16 @@
 package fr.ensicaen.elgama.model.game_board;
 
 import javafx.geometry.Point2D;
-import java.io.IOException;
 
-import java.lang.NumberFormatException;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
-
 
 public class WeatherWind extends Wind {
     final private float _speed;
     final private Point2D _direction;
-    final private IWeatherDB _proxy;
 
     public WeatherWind(IWeatherDB proxy) throws WeatherWindRequestFailureException {
-        _proxy = proxy;
         String data;
         try {
             data = proxy.requestData();
@@ -35,20 +31,20 @@ public class WeatherWind extends Wind {
 
     private Point2D interpretDirection(String direction) {
         Map<Character, Point2D> map = new HashMap<>();
-        map.put('N', new Point2D(0,-1));
-        map.put('S', new Point2D(0,1));
-        map.put('E', new Point2D(1,0));
-        map.put('O', new Point2D(-1,0));
+        map.put('N', new Point2D(0, -1));
+        map.put('S', new Point2D(0, 1));
+        map.put('E', new Point2D(1, 0));
+        map.put('O', new Point2D(-1, 0));
         double x = 0;
         double y = 0;
-        for (char c: direction.toCharArray()) {
+        for (char c : direction.toCharArray()) {
             if (map.containsKey(c)) {
                 x += map.get(c).getX();
                 y += map.get(c).getY();
             }
         }
-        Point2D currentPoint = new Point2D(x,y);
-        double norm = currentPoint.distance(0,0);
+        Point2D currentPoint = new Point2D(x, y);
+        double norm = currentPoint.distance(0, 0);
         return new Point2D(x / norm, y / norm);
     }
 

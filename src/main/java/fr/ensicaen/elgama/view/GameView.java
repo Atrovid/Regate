@@ -1,13 +1,13 @@
 package fr.ensicaen.elgama.view;
 
-import fr.ensicaen.elgama.model.game_board.Board; // FIXME HORREUR couplage entre la vue et le modèle
+import fr.ensicaen.elgama.Main;
 import fr.ensicaen.elgama.presenter.GamePresenter;
 import fr.ensicaen.elgama.presenter.IGameView;
-import fr.ensicaen.elgama.presenter.MapElementView;
 import fr.ensicaen.elgama.presenter.UserAction;
-import fr.ensicaen.elgama.Main;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Point2D;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.ImageView;
@@ -17,15 +17,16 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Ellipse;
 import javafx.scene.shape.Line;
+import javafx.scene.shape.Polygon;
 import javafx.scene.text.Text;
-import javafx.scene.shape.Line;
 import javafx.stage.Stage;
 
-import java.awt.geom.Point2D;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class GameView implements IGameView {
     private static Stage _stage;
+    private final ArrayList<Node> _checkPoints = new ArrayList<>();
     public Text _strength;
     public Text _minutes;
     public Text _seconds;
@@ -36,46 +37,64 @@ public class GameView implements IGameView {
     private AnchorPane _base;
     @FXML
     private ImageView _windImage;
-    private Line _line;
 
-    public void setGamePresenter( GamePresenter gamePresenter ) {
+    public void setGamePresenter(GamePresenter gamePresenter) {
         _gamePresenter = gamePresenter;
     }
 
-    public void rotateBoat(Ellipse boat, double val ) {
+    public void rotateBoat(Ellipse boat, double val) {
         boat.setRotate(val);
     }
 
-    public Ellipse drawBoat( double x, double y, double rx, double ry ) {
+    public Ellipse drawBoat(double x, double y, double rx, double ry) {
         Ellipse boat = new Ellipse(x, y, rx, ry);
         boat.setFill(Color.BLACK);
         _base.getChildren().add(boat);
         return boat;
     }
 
-    public Line drawLine(double x, double y, double rx, double ry){
-        Line line = new Line(x,y,rx,ry);
+    @Override
+    public void drawShoreline(double[] polygonVertices) {
+        Polygon polygon = new Polygon(polygonVertices);
+        polygon.setFill(Color.YELLOW);
+        _base.getChildren().add(polygon);
+        polygon.toBack();
+    }
+
+    @Override
+    public void drawBuoy(javafx.geometry.Point2D center, int radius) {
+        Ellipse ellipse = new Ellipse(center.getX(), center.getY(), radius, radius);
+        ellipse.setFill(Color.ORANGE);
+        _base.getChildren().add(ellipse);
+        ellipse.toBack();
+    }
+
+    @Override
+    public void drawCheckPoint(javafx.geometry.Point2D p1, Point2D p2) {
+        Line line = new Line(p1.getX(), p1.getY(), p2.getX(), p2.getY());
         line.setFill(Color.GRAY);
         _base.getChildren().add(line);
-        return line;
+        line.toBack();
+        _checkPoints.add(line);
     }
 
-    public void drawWaterBody(Board map) {
-        MapElementView visitor = new MapElementView(_base);
-        map.accept(visitor, null);
+    @Override
+    public void removeAllCheckPoints() {
+        _base.getChildren().removeAll(_checkPoints);
+        _checkPoints.clear();
     }
 
-    public void move( Ellipse boat, double dx, double dy ) {
+    public void move(Ellipse boat, double dx, double dy) {
         boat.setLayoutX(boat.getLayoutX() + dx);
         boat.setLayoutY(boat.getLayoutY() + dy);
     }
 
-    public void updateBoat(double dx, double dy, double angle ) {
+    public void updateBoat(double dx, double dy, double angle) {
         rotateBoat(_boat, angle);
         move(_boat, dx, dy);
     }
 
-    public void updateTimer(String minutes, String seconds, String milliseconds ) {
+    public void updateTimer(String minutes, String seconds, String milliseconds) {
         _minutes.setText(minutes);
         _seconds.setText(seconds);
         _milliseconds.setText(milliseconds);
@@ -91,11 +110,11 @@ public class GameView implements IGameView {
         _stage.show();
     }
 
-    public void addBoat( double x, double y ) {
-        _boat = drawBoat(x, y, 6, 16);
+    public void addBoat(Point2D boatPosition) {
+        _boat = drawBoat(boatPosition.getX(), boatPosition.getY(), 6, 16);
     }
 
-    private void handleKeyPressed( KeyCode code ) {
+    private void handleKeyPressed(KeyCode code) {
         if (code == KeyCode.SPACE) {
             _gamePresenter.handleUserAction(UserAction.START);
         } else if (code == KeyCode.LEFT) {
@@ -105,7 +124,7 @@ public class GameView implements IGameView {
         }
     }
 
-    public void close(){
+    public void close() {
         _stage.close();
     }
 
@@ -114,7 +133,7 @@ public class GameView implements IGameView {
         }
 
         public static GameView createView() throws IOException {
-            FXMLLoader loader = new FXMLLoader(LoginView.class.getResource("SpotMap.fxml"), Main.getMessageBundle());
+            FXMLLoader loader = new FXMLLoader(StartView.class.getResource("SpotMap.fxml"), Main.getMessageBundle());
             Parent root = loader.load();
             GameView view = loader.getController();
             Scene scene = new Scene(root, 800, 600);

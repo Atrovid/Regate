@@ -25,13 +25,13 @@ public class Buoy implements IBoardElement {
         if (dist == 0) {
             return isPointColliding(from);
         }
-        Point2D tempFrom = new Point2D(from.getX(),from.getY());
+        Point2D tempFrom = new Point2D(from.getX(), from.getY());
         double incrementX = (to.getX() - from.getX()) / dist;
         double incrementY = (to.getY() - from.getY()) / dist;
         for (int i = 0; i < dist; i++) {
             double x = tempFrom.getX() + incrementX;
             double y = tempFrom.getY() + incrementY;
-            tempFrom = new Point2D(x,y);
+            tempFrom = new Point2D(x, y);
             if (isPointColliding(tempFrom)) {
                 return true;
             }
@@ -39,13 +39,7 @@ public class Buoy implements IBoardElement {
         return false;
     }
 
-    public boolean isPointColliding(Point2D point) {
+    private boolean isPointColliding(Point2D point) {
         return (point.distance(_pos) <= _radius);
     }
-
-    @Override
-    public Object accept(IBoardElementVisitor visitor, Object o) {
-        return visitor.visit(this, o);
-    }
-
 }
