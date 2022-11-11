@@ -5,7 +5,6 @@ import fr.ensicaen.elgama.model.PlayerModel;
 import fr.ensicaen.elgama.model.game_board.*;
 import fr.ensicaen.elgama.model.sailboat.PolarReader;
 import fr.ensicaen.elgama.model.sailboat.Sailboat;
-import fr.ensicaen.elgama.model.race_manager.BoatCheckPointTracker;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -17,7 +16,6 @@ import java.util.ArrayList;
 import java.util.Optional;
 
 public class GamePresenter {
-    private final PlayerModel _playerModel; // TODO remove player model
     private final Wind _wind;
     private final Sailboat _sailboat;
     private IGameView _gameView;
@@ -26,6 +24,8 @@ public class GamePresenter {
     private Timer _timer;
 
     public GamePresenter(String nickName) {
+        // TODO remove player model
+        PlayerModel _playerModel;
         _playerModel = new PlayerModel();
         _playerModel.setNickname(nickName);
         Wind wind1;
@@ -47,7 +47,7 @@ public class GamePresenter {
         points.add(new Point2D(0, 600));
         Buoy[] buoyList = {new Buoy(new Point2D(500, 100), 20)};
         CheckPoint[] cpList = {};
-        _board = new Board(new RandomWind(), new Shoreline(points), buoyList, cpList);
+        _board = new Board(_wind, new Shoreline(points), buoyList, cpList);
         _sailboat = new Sailboat(_board, PolarReader.PolarType.Figaro);
     }
 
@@ -98,7 +98,6 @@ public class GamePresenter {
         _timer.updateTimer();
     }
 
-    //TODO don't forget to delete the angle (refactor)
     private void render() {
         _gameView.updateBoat( _sailboat.getSpeed().getX(), _sailboat.getSpeed().getY(), _sailboat.getAngle());
         _gameView.updateTimer(String.format("%02d",_timer.getMinute()),String.format("%02d",_timer.getSecond()),String.format("%03d",_timer.getMilliSecond()));
