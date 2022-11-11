@@ -1,10 +1,7 @@
-package fr.ensicaen.elgama.model.map;
+package fr.ensicaen.elgama.model.game_board;
 
-import fr.ensicaen.elgama.model.game_board.IWeatherDB;
-import fr.ensicaen.elgama.model.game_board.WeatherWind;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -17,7 +14,7 @@ public class WeatherWindTest {
         WeatherWind wind;
         IWeatherDB mockProxy = mock(IWeatherDB.class);
         try {
-            when(mockProxy.requestData()).thenReturn("\"current_condition\":{\"date\":\"26.10.2022\",\"hour\":\"14:00\",\"tmp\":22,\"wnd_spd\":30,\"wnd_gust\":0,\"wnd_dir\":\"S\",\"pressure\":1011.7,\"humidity\":55,\"condition\":\"Ensoleill\\u00e9\"}");
+            when(mockProxy.requestData()).thenReturn("\"current_condition\":{\"date\":\"26.10.2022\",\"hour\":\"14:00\",\"tmp\":22,\"wnd_spd\":30,\"wnd_gust\":0,\"wnd_dir\":\"S\",\"pressure\":1011.7,\"humidity\":55}");
             wind = new WeatherWind(mockProxy);
         } catch (Exception ignored) {
             return;
@@ -34,12 +31,12 @@ public class WeatherWindTest {
         WeatherWind wind;
         IWeatherDB mockProxy = mock(IWeatherDB.class);
         try {
-            when(mockProxy.requestData()).thenReturn("\"current_condition\":{\"date\":\"26.10.2022\",\"hour\":\"14:00\",\"tmp\":22,\"wnd_spd\":30,\"wnd_gust\":0,\"wnd_dir\":\"S\",\"pressure\":1011.7,\"humidity\":55,\"condition\":\"Ensoleill\\u00e9\"}");
+            when(mockProxy.requestData()).thenReturn("\"current_condition\":{\"date\":\"26.10.2022\",\"hour\":\"14:00\",\"tmp\":22,\"wnd_spd\":30,\"wnd_gust\":0,\"wnd_dir\":\"S\",\"pressure\":1011.7,\"humidity\":55}");
             wind = new WeatherWind(mockProxy);
         } catch (Exception ignored) {
             return;
         }
         float windForce = wind.getWindStrength();
-        assertTrue(windForce == 30);
+        assertEquals(30, windForce);
     }
 }

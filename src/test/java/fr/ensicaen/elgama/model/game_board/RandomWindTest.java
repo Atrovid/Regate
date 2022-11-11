@@ -1,7 +1,5 @@
-package fr.ensicaen.elgama.model.map;
+package fr.ensicaen.elgama.model.game_board;
 
-import fr.ensicaen.elgama.model.game_board.RandomWind;
-import fr.ensicaen.elgama.model.game_board.Wind;
 import org.junit.jupiter.api.Test;
 
 import javafx.geometry.Point2D;

@@ -42,10 +42,4 @@ public class Shoreline implements IBoardElement {
         }
         return array;
     }
-
-    @Override
-    public Object accept(IBoardElementVisitor visitor, Object o) {
-        return visitor.visit(this, o);
-    }
-
 }

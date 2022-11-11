@@ -25,9 +25,32 @@ public class GamePresenter {
 
     public void setGameView(IGameView gameView) {
         _gameView = gameView;
-        _gameView.addBoat(_sailboat.getPosition().getX(), _sailboat.getPosition().getY());
-        _gameView.drawBoard(_board);
+        displayBoard();
+        _gameView.addBoat(_sailboat.getPosition());
         _gameView.setWind(_board.getWindAngle(), _board.getWindStrength());
+    }
+
+    private void displayBoard() {
+        drawShoreline(_board.getShoreline());
+        for (Buoy buoy: _board.getBuoys()) {
+            drawBuoy(buoy);
+        }
+        for (CheckPointIterator it = _board.getCheckpoints(); it.hasNext(); ) {
+            CheckPoint checkPoint = it.next();
+            drawCheckPoint(checkPoint);
+        }
+    }
+
+    public void drawBuoy(Buoy buoy) {
+        _gameView.drawBuoy(buoy.getPos(), buoy.getRadius());
+    }
+
+    public void drawShoreline(Shoreline shoreline) {
+        _gameView.drawShoreline(shoreline.getPointsAsDoubleArray());
+    }
+
+    public void drawCheckPoint(CheckPoint checkPoint) {
+        _gameView.drawCheckPoint(checkPoint.getPoint1(), checkPoint.getPoint2());
     }
 
     public void handleUserAction(UserAction code) {

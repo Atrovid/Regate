@@ -42,10 +42,4 @@ public class Buoy implements IBoardElement {
     public boolean isPointColliding(Point2D point) {
         return (point.distance(_pos) <= _radius);
     }
-
-    @Override
-    public Object accept(IBoardElementVisitor visitor, Object o) {
-        return visitor.visit(this, o);
-    }
-
 }

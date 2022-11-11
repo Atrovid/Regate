@@ -1,13 +1,13 @@
 package fr.ensicaen.elgama.view;
 
-import fr.ensicaen.elgama.model.game_board.Board; // FIXME HORREUR couplage entre la vue et le modèle
 import fr.ensicaen.elgama.presenter.GamePresenter;
 import fr.ensicaen.elgama.presenter.IGameView;
-import fr.ensicaen.elgama.presenter.MapElementView;
 import fr.ensicaen.elgama.presenter.UserAction;
 import fr.ensicaen.elgama.Main;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Point2D;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.ImageView;
@@ -17,11 +17,11 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Ellipse;
 import javafx.scene.shape.Line;
+import javafx.scene.shape.Polygon;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-
-import java.awt.geom.Point2D;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class GameView implements IGameView {
     private static Stage _stage;
@@ -31,11 +31,11 @@ public class GameView implements IGameView {
     public Text _milliseconds;
     private GamePresenter _gamePresenter;
     private Ellipse _boat;
+    private final ArrayList<Node> _checkPoints = new ArrayList<>();
     @FXML
     private AnchorPane _base;
     @FXML
     private ImageView _windImage;
-    private Line _line;
 
     public void setGamePresenter( GamePresenter gamePresenter ) {
         _gamePresenter = gamePresenter;
@@ -52,16 +52,35 @@ public class GameView implements IGameView {
         return boat;
     }
 
-    public Line drawLine(double x, double y, double rx, double ry){
-        Line line = new Line(x,y,rx,ry);
-        line.setFill(Color.GRAY);
-        _base.getChildren().add(line);
-        return line;
+    @Override
+    public void drawShoreline(double[] polygonVertices) {
+        Polygon polygon = new Polygon(polygonVertices);
+        polygon.setFill(Color.YELLOW);
+        _base.getChildren().add(polygon);
+        polygon.toBack();
     }
 
-    public void drawBoard(Board map) {
-        MapElementView visitor = new MapElementView(_base);
-        map.accept(visitor, null);
+    @Override
+    public void drawBuoy(javafx.geometry.Point2D center, int radius) {
+        Ellipse ellipse = new Ellipse(center.getX(), center.getY(), radius, radius);
+        ellipse.setFill(Color.ORANGE);
+        _base.getChildren().add(ellipse);
+        ellipse.toBack();
+    }
+
+    @Override
+    public void drawCheckPoint(javafx.geometry.Point2D p1, Point2D p2) {
+        Line line = new Line(p1.getX(), p1.getY(), p2.getX(), p2.getY());
+        line.setFill(Color.GRAY);
+        _base.getChildren().add(line);
+        line.toBack();
+        _checkPoints.add(line);
+    }
+
+    @Override
+    public void removeAllCheckPoints() {
+        _base.getChildren().removeAll(_checkPoints);
+        _checkPoints.clear();
     }
 
     public void move( Ellipse boat, double dx, double dy ) {
@@ -90,8 +109,8 @@ public class GameView implements IGameView {
         _stage.show();
     }
 
-    public void addBoat( double x, double y ) {
-        _boat = drawBoat(x, y, 6, 16);
+    public void addBoat( Point2D boatPosition ) {
+        _boat = drawBoat(boatPosition.getX(), boatPosition.getY(), 6, 16);
     }
 
     private void handleKeyPressed( KeyCode code ) {

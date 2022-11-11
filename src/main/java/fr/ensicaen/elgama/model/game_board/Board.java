@@ -16,11 +16,7 @@ public class Board {
     }
 
     public Point2D getStartingPosition(){
-        return new Point2D(580,480);
-    }
-
-    public Point2D getBoardSize(){
-        return new Point2D(800,600);
+        return new Point2D(530,530);
     }
 
     public double getWindAngle() {
@@ -45,18 +41,15 @@ public class Board {
         return true;
     }
 
-    public CheckPointIterator getCheckpoints() {
-        return new CheckPointIterator(_checkPointList);
+    public Shoreline getShoreline() {
+        return _shore;
     }
 
-    public Object accept(IBoardElementVisitor visitor, Object o) {
-        Object result = _shore.accept(visitor, o);
-        for (Buoy b : _buoyList) {
-            result = b.accept(visitor, result);
-        }
-        for (CheckPoint cp : _checkPointList) {
-            result = cp.accept(visitor, result);
-        }
-        return result;
+    public Buoy[] getBuoys() {
+        return _buoyList;
+    }
+
+    public CheckPointIterator getCheckpoints() {
+        return new CheckPointIterator(_checkPointList);
     }
 }
